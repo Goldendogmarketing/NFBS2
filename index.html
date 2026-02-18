@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Florida Building Solutions | Custom Carports, Sheds & Metal Buildings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F172A',
+                        secondary: '#2563EB',
+                        accent: '#60A5FA',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-gray-50">
+
+    <!-- Top Bar -->
+    <div class="bg-primary text-white py-2 text-sm">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-6">
+                <span><i class="fa-solid fa-flag-usa text-secondary mr-2"></i>100% American Owned & Operated</span>
+                <span class="hidden md:inline"><i class="fa-solid fa-award text-secondary mr-2"></i>20+ Years Experience</span>
+            </div>
+            <a href="tel:+19044952325" class="flex items-center gap-2 font-bold text-secondary hover:text-blue-300 transition">
+                <i class="fa-solid fa-phone animate-pulse"></i> (904) 495-2325
+            </a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3">
+                <img src="logo.avif" alt="North Florida Building Solutions" class="h-12 w-auto">
+            </a>
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="sheds-for-sale.html" class="bg-secondary hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition shadow-lg">
+                    Buy Now
+                </a>
+                <a href="sheds.html" class="hover:text-secondary transition font-medium">Sheds - Rent-To-Own</a>
+                <a href="#products" class="hover:text-secondary transition font-medium">Steel Buildings</a>
+                <a href="locations.html" class="hover:text-secondary transition font-medium">Service Areas</a>
+                <a href="about.html" class="hover:text-secondary transition font-medium">About</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="lg:hidden text-gray-700 text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t bg-white px-6 pb-4">
+            <a href="sheds-for-sale.html" class="block py-3 border-b border-gray-100 font-semibold text-secondary hover:text-blue-700 transition">Buy Now</a>
+            <a href="sheds.html" class="block py-3 border-b border-gray-100 font-medium hover:text-secondary transition">Sheds - Rent-To-Own</a>
+            <a href="#products" class="block py-3 border-b border-gray-100 font-medium hover:text-secondary transition">Steel Buildings</a>
+            <a href="locations.html" class="block py-3 border-b border-gray-100 font-medium hover:text-secondary transition">Service Areas</a>
+            <a href="about.html" class="block py-3 border-b border-gray-100 font-medium hover:text-secondary transition">About</a>
+            <a href="tel:+19044952325" class="block py-3 font-bold text-secondary">
+                <i class="fa-solid fa-phone mr-2"></i>(904) 495-2325
+            </a>
+        </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-primary text-white">
+        <div class="absolute inset-0 bg-black opacity-60 z-0"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')] bg-cover bg-center z-[-1]"></div>
+
+        <div class="relative z-10 container mx-auto px-6 py-20 md:py-28">
+            <div class="max-w-3xl">
+                <div class="inline-block bg-secondary text-white px-4 py-1 rounded-full text-sm font-bold mb-4">
+                    <i class="fa-solid fa-truck mr-2"></i>FREE Delivery & Installation
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+                    Quality Metal Buildings <br><span class="text-secondary">At The Best Prices</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl">
+                    Carports, garages, barns, and custom steel buildings. Built tough for North Florida weather. Delivered and installed on your property.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <a href="#quote" class="bg-secondary hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition transform hover:scale-105 text-center">
+                        <i class="fa-solid fa-calculator mr-2"></i>Get Free Quote
+                    </a>
+                    <a href="tel:+19044952325" class="bg-white hover:bg-gray-100 text-primary px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-phone"></i> (904) 495-2325
+                    </a>
+                </div>
+                <div class="flex flex-wrap items-center gap-4 md:gap-6 text-sm text-gray-200">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-accent"></i> 20-Year Warranty</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-truck text-accent"></i> Free Installation</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-dollar-sign text-accent"></i> Financing Available</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-certificate text-accent"></i> Certified Steel</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Trust Bar -->
+    <section class="bg-white py-6 border-b">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 text-center">
+                <div>
+                    <div class="text-3xl font-bold text-primary">20+</div>
+                    <div class="text-sm text-gray-500">Years Experience</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-primary">1,000+</div>
+                    <div class="text-sm text-gray-500">Buildings Installed</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-primary">100%</div>
+                    <div class="text-sm text-gray-500">Satisfaction Guarantee</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-secondary">A+</div>
+                    <div class="text-sm text-gray-500">BBB Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Categories -->
+    <section id="products" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-4">Our Buildings</h2>
+            <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">From simple carports to large commercial buildings, we have the perfect solution for your needs.</p>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Carports -->
+                <a href="#carports" class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <div class="h-48 bg-cover bg-center group-hover:scale-105 transition duration-300" style="background-image:url('images/metal-carport.jpg')"></div>
+                    <div class="p-6 text-center">
+                        <i class="fa-solid fa-car text-3xl text-secondary mb-3"></i>
+                        <h3 class="text-xl font-bold mb-2">Metal Carports</h3>
+                        <p class="text-gray-600 text-sm">Protect your vehicles from the elements</p>
+                    </div>
+                </a>
+
+                <!-- Garages -->
+                <a href="#garages" class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <div class="h-48 bg-cover bg-center group-hover:scale-105 transition duration-300" style="background-image:url('images/metal-garage.jpg')"></div>
+                    <div class="p-6 text-center">
+                        <i class="fa-solid fa-warehouse text-3xl text-secondary mb-3"></i>
+                        <h3 class="text-xl font-bold mb-2">Metal Garages</h3>
+                        <p class="text-gray-600 text-sm">Enclosed storage and workshop space</p>
+                    </div>
+                </a>
+
+                <!-- Barns -->
+                <a href="#barns" class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <div class="h-48 bg-cover bg-center group-hover:scale-105 transition duration-300" style="background-image:url('images/metal-barn.jpg')"></div>
+                    <div class="p-6 text-center">
+                        <i class="fa-solid fa-horse text-3xl text-secondary mb-3"></i>
+                        <h3 class="text-xl font-bold mb-2">Metal Barns</h3>
+                        <p class="text-gray-600 text-sm">Agricultural and livestock buildings</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features / Value Props -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6 grid md:grid-cols-4 gap-8 text-center">
+            <div class="p-6">
+                <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-hammer"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-2">Premium Materials</h3>
+                <p class="text-gray-600 text-sm">14-gauge steel framing with 29-gauge roof panels. Built to last.</p>
+            </div>
+            <div class="p-6">
+                <div class="w-16 h-16 bg-gray-100 text-gray-700 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-palette"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-2">Fully Customizable</h3>
+                <p class="text-gray-600 text-sm">Choose colors, roof style, doors, and windows. Your design, your way.</p>
+            </div>
+            <div class="p-6">
+                <div class="w-16 h-16 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-2">Free Delivery</h3>
+                <p class="text-gray-600 text-sm">Free delivery and professional installation throughout Florida.</p>
+            </div>
+            <div class="p-6">
+                <div class="w-16 h-16 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-2">20-Year Warranty</h3>
+                <p class="text-gray-600 text-sm">Industry-leading warranty on all structures and workmanship.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Builder Section -->
+    <section class="py-16 bg-primary text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <div class="inline-block bg-secondary text-white px-4 py-1 rounded-full text-sm font-bold mb-4">
+                        <i class="fa-solid fa-cube mr-2"></i>NEW! Interactive Tool
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Design Your Building in 3D</h2>
+                    <p class="text-gray-300 text-lg mb-6">
+                        Use our powerful 3D design tool to customize every detail of your metal building. Choose your size, colors, doors, windows, and more - then get an instant price estimate.
+                    </p>
+                    <ul class="space-y-3 mb-8 text-gray-300">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-accent"></i>
+                            <span>Select your size and style</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-accent"></i>
+                            <span>Choose from 13+ colors</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-accent"></i>
+                            <span>Add doors, windows & accessories</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-accent"></i>
+                            <span>Get instant pricing</span>
+                        </li>
+                    </ul>
+                    <a href="sheds-for-sale.html" class="inline-block bg-secondary hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition transform hover:scale-105">
+                        <i class="fa-solid fa-cubes mr-2"></i>Launch 3D Builder
+                    </a>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-gray-800 rounded-2xl p-4 shadow-2xl">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            <span class="ml-4 text-gray-400 text-sm">3D Building Designer</span>
+                        </div>
+                        <div class="aspect-video bg-gray-700 rounded-lg flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-gray-600 to-gray-800"></div>
+                            <div class="relative text-center">
+                                <i class="fa-solid fa-cube text-6xl text-secondary mb-4 animate-bounce"></i>
+                                <p class="text-gray-300">Click to start designing</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <div class="flex-1 bg-gray-700 rounded p-2 text-center text-xs text-gray-400">Size: 24x30</div>
+                            <div class="flex-1 bg-gray-700 rounded p-2 text-center text-xs text-gray-400">Roof: Vertical</div>
+                            <div class="flex-1 bg-gray-700 rounded p-2 text-center text-xs text-gray-400">Color: Charcoal</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roof Styles Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-4">Roof Styles</h2>
+            <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">Choose the right roof for your needs and budget</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-igloo text-4xl text-gray-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Regular Roof</h3>
+                    <div class="text-secondary font-bold mb-4">Most Economical</div>
+                    <p class="text-gray-600 text-sm">Rounded eaves with horizontal panels. Great value for covered parking and light storage.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-8 text-center border-2 border-secondary relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary text-white px-4 py-1 rounded-full text-xs font-bold">RECOMMENDED</div>
+                    <div class="w-20 h-20 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-house text-4xl text-secondary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">A-Frame Roof</h3>
+                    <div class="text-secondary font-bold mb-4">Best Value</div>
+                    <p class="text-gray-600 text-sm">Boxed eaves with horizontal panels. Classic look with better water runoff.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
+                    <div class="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-arrow-down text-4xl text-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Vertical Roof</h3>
+                    <div class="text-accent font-bold mb-4">Best for Weather</div>
+                    <p class="text-gray-600 text-sm">Vertical panels allow rain and snow to slide off easily. Best choice for durability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financing Section -->
+    <section id="financing" class="py-16 bg-secondary text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-4">Flexible Financing Options</h2>
+                    <p class="text-xl mb-6">Get your building today with payments that fit your budget.</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-2xl"></i>
+                            <span class="text-lg">As low as <strong>10% down</strong></span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-2xl"></i>
+                            <span class="text-lg">Rent-to-Own available</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-2xl"></i>
+                            <span class="text-lg">No credit check options</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check-circle text-2xl"></i>
+                            <span class="text-lg">Quick approval process</span>
+                        </li>
+                    </ul>
+                    <a href="#quote" class="inline-block bg-white text-secondary px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:bg-gray-100 transition">
+                        Apply for Financing
+                    </a>
+                </div>
+                <div class="md:w-1/3">
+                    <div class="bg-white text-gray-900 p-8 rounded-3xl shadow-2xl text-center">
+                        <div class="text-5xl font-bold text-secondary mb-2">10%</div>
+                        <div class="text-xl font-bold mb-4">Down Payment</div>
+                        <div class="text-gray-600 mb-6">Get started with minimal upfront cost</div>
+                        <div class="border-t pt-4">
+                            <div class="text-sm text-gray-500">Example: 20x20 Carport</div>
+                            <div class="text-2xl font-bold text-primary">$299/mo*</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-4">Our Recent Work</h2>
+            <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">See the quality craftsmanship we deliver to our customers throughout North Florida</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+                    <img src="images/building-1.jpg" alt="Metal Garage with Roll-up Doors" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                        <div class="text-white">
+                            <div class="font-bold">Multi-Bay Garage</div>
+                            <div class="text-sm text-gray-300">3 Roll-up Doors • Charcoal</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+                    <img src="images/building-2.jpg" alt="Steel Building Side View" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                        <div class="text-white">
+                            <div class="font-bold">Commercial Garage</div>
+                            <div class="text-sm text-gray-300">A-Frame Roof • Vertical Panels</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+                    <img src="images/building-3.jpg" alt="Large Metal Building" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                        <div class="text-white">
+                            <div class="font-bold">Workshop Building</div>
+                            <div class="text-sm text-gray-300">Extra Tall • White Doors</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+                    <img src="images/building-4.jpg" alt="Custom Metal Structure" class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                        <div class="text-white">
+                            <div class="font-bold">Storage Building</div>
+                            <div class="text-sm text-gray-300">Heavy Duty • Custom Size</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <a href="#quote" class="inline-block bg-secondary hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg transition">
+                    <i class="fa-solid fa-calculator mr-2"></i>Get a Quote for Your Project
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-2xl">
+                    <div class="flex text-secondary mb-4">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Best decision I made for my property. The carport was installed in one day and looks amazing. Great price too!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">JM</div>
+                        <div>
+                            <div class="font-bold">James M.</div>
+                            <div class="text-sm text-gray-500">Gainesville, FL</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-2xl">
+                    <div class="flex text-secondary mb-4">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6">"I called three other companies and nobody answered. These guys picked up right away and had my garage installed within two weeks."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">SR</div>
+                        <div>
+                            <div class="font-bold">Sarah R.</div>
+                            <div class="text-sm text-gray-500">Ocala, FL</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-2xl">
+                    <div class="flex text-secondary mb-4">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6">"The quality of the steel barn exceeded my expectations. My horses are well protected and it looks great on my property."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">DT</div>
+                        <div>
+                            <div class="font-bold">David T.</div>
+                            <div class="text-sm text-gray-500">Lake City, FL</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Quote Form -->
+    <section id="quote" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold mb-4">Get Your Free Quote Today</h2>
+                    <p class="text-gray-600">Fill out the form below and we'll get back to you within 24 hours with a custom quote.</p>
+                </div>
+                <form class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Name *</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent" placeholder="Your Name">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Phone *</label>
+                        <input type="tel" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent" placeholder="(555) 555-5555">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                        <input type="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent" placeholder="email@example.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">ZIP Code *</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent" placeholder="32601">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Building Type</label>
+                        <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent">
+                            <option>Carport</option>
+                            <option>Garage</option>
+                            <option>Barn</option>
+                            <option>RV Cover</option>
+                            <option>Commercial Building</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Approximate Size</label>
+                        <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent">
+                            <option>12x20</option>
+                            <option>18x20</option>
+                            <option>20x20</option>
+                            <option>20x30</option>
+                            <option>24x30</option>
+                            <option>30x40</option>
+                            <option>Custom Size</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Tell Us About Your Project</label>
+                        <textarea class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent" rows="3" placeholder="Describe what you're looking for, any special requirements, preferred timeline, etc."></textarea>
+                    </div>
+                    <div class="md:col-span-2 text-center mt-4">
+                        <button type="submit" class="bg-secondary hover:bg-blue-700 text-white px-12 py-4 rounded-xl font-bold text-lg shadow-lg transition w-full md:w-auto">
+                            <i class="fa-solid fa-paper-plane mr-2"></i>Get My Free Quote
+                        </button>
+                        <p class="text-xs text-gray-500 mt-4">No obligation. No spam. Just a quick quote.</p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Phone CTA below form -->
+            <div class="mt-8 text-center">
+                <p class="text-gray-600 mb-2">Prefer to talk to someone?</p>
+                <a href="tel:+19044952325" class="inline-flex items-center gap-2 text-2xl font-bold text-secondary hover:text-blue-700 transition">
+                    <i class="fa-solid fa-phone"></i> (904) 495-2325
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Area -->
+    <section class="py-12 bg-primary text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold mb-4">Proudly Serving All of North Florida</h2>
+            <p class="text-gray-300 mb-6">Gainesville, Ocala, Jacksonville, Lake City, Palatka, and surrounding areas</p>
+            <div class="flex flex-wrap justify-center gap-4 text-sm">
+                <span class="bg-white/10 px-4 py-2 rounded-full">Alachua County</span>
+                <span class="bg-white/10 px-4 py-2 rounded-full">Marion County</span>
+                <span class="bg-white/10 px-4 py-2 rounded-full">Columbia County</span>
+                <span class="bg-white/10 px-4 py-2 rounded-full">Duval County</span>
+                <span class="bg-white/10 px-4 py-2 rounded-full">Putnam County</span>
+                <span class="bg-white/10 px-4 py-2 rounded-full">+ More</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <img src="logo.avif" alt="North Florida Building Solutions" class="h-12 w-auto mb-4 brightness-0 invert">
+                    <p class="text-sm">Quality metal buildings at affordable prices. Serving North Florida for over 20 years.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Products</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-secondary transition">Metal Carports</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Metal Garages</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Metal Barns</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">RV Covers</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Shed Moving</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Shed Delivery</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-secondary transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Financing</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Warranty</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>
+                            <a href="tel:+19044952325" class="flex items-center gap-2 hover:text-secondary transition">
+                                <i class="fa-solid fa-phone"></i> (904) 495-2325
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:info@nflbuildingsolutions.com" class="flex items-center gap-2 hover:text-secondary transition">
+                                <i class="fa-solid fa-envelope"></i> info@nflbuildingsolutions.com
+                            </a>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-location-dot mt-1"></i>
+                            <span>102 Whispering Pines Trail<br>Interlachen, FL 32148</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm">&copy; 2026 North Florida Building Solutions. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="hover:text-secondary transition"><i class="fa-brands fa-facebook text-xl"></i></a>
+                    <a href="#" class="hover:text-secondary transition"><i class="fa-brands fa-instagram text-xl"></i></a>
+                    <a href="#" class="hover:text-secondary transition"><i class="fa-brands fa-youtube text-xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            var icon = this.querySelector('i');
+            menu.classList.toggle('hidden');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        });
+    </script>
+</body>
+</html>

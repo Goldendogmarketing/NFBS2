@@ -1,0 +1,185 @@
+{
+  "business": {
+    "name": "North Florida Building Solutions",
+    "phone": "(904) 495-2325",
+    "phoneLink": "+19044952325",
+    "email": "info@nflbuildingsolutions.com",
+    "address": "102 Whispering Pines Trail",
+    "city": "Interlachen",
+    "state": "FL",
+    "zip": "32148",
+    "builderUrl": "https://estimate.carportsolution.com/?dealer=NORTH-FLORIDA-BUILDING-SOLUTIONS"
+  },
+  "services": [
+    {
+      "slug": "metal-carports",
+      "name": "Metal Carports",
+      "shortName": "Carports",
+      "description": "Protect your vehicles from Florida's harsh sun, rain, and storms with our durable metal carports.",
+      "icon": "fa-car",
+      "features": ["Single & Double Wide", "Regular, A-Frame & Vertical Roof", "Custom Sizes Available", "Free Delivery & Installation"]
+    },
+    {
+      "slug": "metal-garages",
+      "name": "Metal Garages",
+      "shortName": "Garages",
+      "description": "Fully enclosed steel garages for secure storage, workshops, and vehicle protection.",
+      "icon": "fa-warehouse",
+      "features": ["Roll-Up & Walk-In Doors", "Windows Available", "Insulation Options", "Multiple Bay Configurations"]
+    },
+    {
+      "slug": "metal-barns",
+      "name": "Metal Barns",
+      "shortName": "Barns",
+      "description": "Agricultural and equestrian steel barns built to withstand Florida weather.",
+      "icon": "fa-horse",
+      "features": ["Horse Barns & Stables", "Hay Storage", "Equipment Barns", "Custom Layouts"]
+    },
+    {
+      "slug": "rv-covers",
+      "name": "RV Covers & Boat Covers",
+      "shortName": "RV Covers",
+      "description": "Protect your RV, boat, or recreational vehicles with our extra-tall metal covers.",
+      "icon": "fa-caravan",
+      "features": ["Extra Height Options", "Wide Spans Available", "Open or Enclosed Sides", "Concrete Anchoring"]
+    }
+  ],
+  "counties": [
+    {
+      "slug": "bradford-county",
+      "name": "Bradford County",
+      "seat": "Starke",
+      "description": "Serving Bradford County with quality metal buildings since 2004. From Starke to Lawtey, we deliver and install throughout the county.",
+      "towns": [
+        {"slug": "starke", "name": "Starke", "isCountySeat": true},
+        {"slug": "lawtey", "name": "Lawtey"},
+        {"slug": "hampton", "name": "Hampton"},
+        {"slug": "graham", "name": "Graham"},
+        {"slug": "melrose", "name": "Melrose"}
+      ]
+    },
+    {
+      "slug": "clay-county",
+      "name": "Clay County",
+      "seat": "Green Cove Springs",
+      "description": "Your trusted metal building provider in Clay County. Serving Keystone Heights, Green Cove Springs, Middleburg and all surrounding communities.",
+      "towns": [
+        {"slug": "keystone-heights", "name": "Keystone Heights"},
+        {"slug": "lakeside", "name": "Lakeside"},
+        {"slug": "lake-geneva", "name": "Lake Geneva"},
+        {"slug": "penney-farms", "name": "Penney Farms"},
+        {"slug": "green-cove-springs", "name": "Green Cove Springs", "isCountySeat": true},
+        {"slug": "kingsley-lake", "name": "Kingsley Lake"},
+        {"slug": "melrose", "name": "Melrose"},
+        {"slug": "middleburg", "name": "Middleburg"}
+      ]
+    },
+    {
+      "slug": "alachua-county",
+      "name": "Alachua County",
+      "seat": "Gainesville",
+      "description": "North Florida Building Solutions proudly serves Alachua County. From Gainesville to Hawthorne, Micanopy to Waldo - we're your local metal building experts.",
+      "towns": [
+        {"slug": "melrose", "name": "Melrose"},
+        {"slug": "hawthorne", "name": "Hawthorne"},
+        {"slug": "earleton", "name": "Earleton"},
+        {"slug": "waldo", "name": "Waldo"},
+        {"slug": "citra", "name": "Citra"},
+        {"slug": "micanopy", "name": "Micanopy"},
+        {"slug": "gainesville", "name": "Gainesville", "isCountySeat": true},
+        {"slug": "island-grove", "name": "Island Grove"},
+        {"slug": "lochloosa", "name": "Lochloosa"},
+        {"slug": "mcintosh", "name": "McIntosh"},
+        {"slug": "orange-lake", "name": "Orange Lake"},
+        {"slug": "windsor", "name": "Windsor"},
+        {"slug": "orange-heights", "name": "Orange Heights"},
+        {"slug": "campville", "name": "Campville"}
+      ]
+    },
+    {
+      "slug": "marion-county",
+      "name": "Marion County",
+      "seat": "Ocala",
+      "description": "Serving eastern Marion County within a 35-mile radius. Quality metal buildings delivered and installed to Fort McCoy, Citra, Reddick, and surrounding areas.",
+      "towns": [
+        {"slug": "fort-mccoy", "name": "Fort McCoy"},
+        {"slug": "orange-springs", "name": "Orange Springs"},
+        {"slug": "citra", "name": "Citra"},
+        {"slug": "anthony", "name": "Anthony"},
+        {"slug": "sparr", "name": "Sparr"},
+        {"slug": "lowell", "name": "Lowell"},
+        {"slug": "reddick", "name": "Reddick"}
+      ]
+    },
+    {
+      "slug": "lake-county",
+      "name": "Lake County",
+      "seat": "Tavares",
+      "description": "Metal buildings delivered and installed in Lake County. Serving Astor and surrounding areas with free delivery and installation.",
+      "towns": [
+        {"slug": "astor", "name": "Astor"}
+      ]
+    },
+    {
+      "slug": "volusia-county",
+      "name": "Volusia County",
+      "seat": "DeLand",
+      "description": "Serving Volusia County with quality metal buildings. Free delivery and installation to Pierson, Seville, and surrounding areas.",
+      "towns": [
+        {"slug": "pierson", "name": "Pierson"},
+        {"slug": "seville", "name": "Seville"}
+      ]
+    },
+    {
+      "slug": "putnam-county",
+      "name": "Putnam County",
+      "seat": "Palatka",
+      "description": "Serving Putnam County with premium metal buildings. From Palatka to Interlachen, Welaka to Melrose - free delivery and installation throughout the county.",
+      "towns": [
+        {"slug": "rodman", "name": "Rodman"},
+        {"slug": "orange-springs", "name": "Orange Springs"},
+        {"slug": "edgar", "name": "Edgar"},
+        {"slug": "bardin", "name": "Bardin"},
+        {"slug": "interlachen", "name": "Interlachen"},
+        {"slug": "palatka", "name": "Palatka", "isCountySeat": true},
+        {"slug": "east-palatka", "name": "East Palatka"},
+        {"slug": "florahome", "name": "Florahome"},
+        {"slug": "georges-lake", "name": "Georges Lake"},
+        {"slug": "putnam-hall", "name": "Putnam Hall"},
+        {"slug": "hollister", "name": "Hollister"},
+        {"slug": "pomona-park", "name": "Pomona Park"},
+        {"slug": "welaka", "name": "Welaka"},
+        {"slug": "san-mateo", "name": "San Mateo"},
+        {"slug": "lake-como", "name": "Lake Como"},
+        {"slug": "satsuma", "name": "Satsuma"},
+        {"slug": "bostwick", "name": "Bostwick"},
+        {"slug": "grandin", "name": "Grandin"},
+        {"slug": "melrose", "name": "Melrose"}
+      ]
+    },
+    {
+      "slug": "flagler-county",
+      "name": "Flagler County",
+      "seat": "Bunnell",
+      "description": "Serving Flagler County with quality metal buildings. Free delivery and installation to Bunnell, Palm Coast, and surrounding areas.",
+      "towns": [
+        {"slug": "bunnell", "name": "Bunnell", "isCountySeat": true},
+        {"slug": "palm-coast", "name": "Palm Coast"}
+      ]
+    },
+    {
+      "slug": "st-johns-county",
+      "name": "St. Johns County",
+      "seat": "St. Augustine",
+      "description": "Serving St. Johns County with quality metal buildings. Free delivery and installation to Hastings, Elkton, and all surrounding communities.",
+      "towns": [
+        {"slug": "hastings", "name": "Hastings"},
+        {"slug": "spuds", "name": "Spuds"},
+        {"slug": "elkton", "name": "Elkton"},
+        {"slug": "armstrong", "name": "Armstrong"},
+        {"slug": "flagler-estates", "name": "Flagler Estates"},
+        {"slug": "st-johns-river-estates", "name": "St. Johns River Estates"}
+      ]
+    }
+  ]
+}

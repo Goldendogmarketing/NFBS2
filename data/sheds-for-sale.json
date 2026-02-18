@@ -1,0 +1,70 @@
+{
+  "sheds": [
+    {
+      "slug": "8x12-economy-shed",
+      "name": "8x12 Economy Shed",
+      "size": "8' x 12'",
+      "style": "Economy",
+      "image": "images/sheds/8x12-economy.avif",
+      "salePrice": 2899,
+      "description": "A compact and affordable storage shed, perfect for smaller yards. Great for garden tools, lawn equipment, and seasonal items.",
+      "features": ["LP Smart Siding", "Double Doors", "Treated Floor Joists", "Shingle Roof", "1 Window"],
+      "available": true
+    },
+    {
+      "slug": "10x12-utility-shed",
+      "name": "10x12 Utility Shed",
+      "size": "10' x 12'",
+      "style": "Utility",
+      "image": "images/sheds/10x12-utility.jpg",
+      "salePrice": 3499,
+      "description": "A versatile utility shed perfect for storing lawn equipment, tools, and outdoor gear. Durable LP Smart siding stands up to Florida weather.",
+      "features": ["LP Smart Siding", "Double Doors", "2 Windows", "Treated Floor Joists", "Shingle Roof", "6'2\" Wall Height"],
+      "available": true
+    },
+    {
+      "slug": "10x16-lofted-barn",
+      "name": "10x16 Lofted Barn",
+      "size": "10' x 16'",
+      "style": "Lofted Barn",
+      "image": "images/sheds/10x16-lofted-barn.jpg",
+      "salePrice": 4799,
+      "description": "Maximize your storage with a spacious loft. The barn-style roof creates overhead storage space for items you don't need daily access to.",
+      "features": ["LP Smart Siding", "Loft for Extra Storage", "Double Doors", "2 Windows", "Treated Floor Joists", "Shingle Roof"],
+      "available": true
+    },
+    {
+      "slug": "12x16-side-lofted-barn",
+      "name": "12x16 Side Lofted Barn",
+      "size": "12' x 16'",
+      "style": "Side Lofted Barn",
+      "image": "images/sheds/12x16-side-lofted-barn.jpg",
+      "salePrice": 5499,
+      "description": "Our side lofted barn offers a taller side wall for easy access with a generous loft for extra storage. A customer favorite for workshops.",
+      "features": ["LP Smart Siding", "Side Loft", "Double Doors", "2 Windows", "Workbench Ready", "Treated Floor Joists", "Shingle Roof"],
+      "available": true
+    },
+    {
+      "slug": "12x20-garage-shed",
+      "name": "12x20 Garage Shed",
+      "size": "12' x 20'",
+      "style": "Garage",
+      "image": "images/sheds/12x20-garage.jpg",
+      "salePrice": 6999,
+      "description": "A full-size garage shed with roll-up door for vehicle or equipment storage. Perfect for ATVs, golf carts, riding mowers, and workshop space.",
+      "features": ["LP Smart Siding", "8x7 Roll-Up Door", "Walk-In Door", "2 Windows", "Treated Floor Joists", "Shingle Roof", "7' Wall Height"],
+      "available": true
+    },
+    {
+      "slug": "12x24-cabin-shed",
+      "name": "12x24 Cabin Shed",
+      "size": "12' x 24'",
+      "style": "Cabin",
+      "image": "images/sheds/12x24-cabin.jpg",
+      "salePrice": 8499,
+      "description": "Our largest option. The cabin style features a front porch, perfect as a she-shed, man cave, home office, or guest house.",
+      "features": ["LP Smart Siding", "4' Front Porch", "Double Doors", "3 Windows", "Treated Floor Joists", "Shingle Roof", "Porch Railing"],
+      "available": true
+    }
+  ]
+}

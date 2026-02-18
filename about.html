@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | North Florida Building Solutions</title>
+    <meta name="description" content="Learn about North Florida Building Solutions. Owner Josh Crane brings 15+ years of experience in metal buildings, sheds, carports, and garages across North Florida.">
+    <link rel="canonical" href="https://nflbuildingsolutions.com/about.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F172A',
+                        secondary: '#2563EB',
+                        accent: '#60A5FA',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-gray-50">
+
+    <!-- Top Bar -->
+    <div class="bg-primary text-white py-2 text-sm">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-6">
+                <span><i class="fa-solid fa-flag-usa text-secondary mr-2"></i>100% American Owned & Operated</span>
+                <span class="hidden md:inline"><i class="fa-solid fa-award text-secondary mr-2"></i>20+ Years Experience</span>
+            </div>
+            <a href="tel:+19044952325" class="flex items-center gap-2 font-bold text-secondary hover:text-blue-300 transition">
+                <i class="fa-solid fa-phone"></i> (904) 495-2325
+            </a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="logo.avif" alt="North Florida Building Solutions" class="h-12 w-auto">
+            </a>
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="sheds-for-sale.html" class="bg-secondary hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition shadow-lg">
+                    Buy Now
+                </a>
+                <a href="sheds.html" class="hover:text-secondary transition font-medium">Sheds - Rent-To-Own</a>
+                <a href="index.html#products" class="hover:text-secondary transition font-medium">Steel Buildings</a>
+                <a href="locations.html" class="hover:text-secondary transition font-medium">Service Areas</a>
+                <a href="about.html" class="text-secondary font-semibold">About</a>
+            </div>
+            <button id="mobile-menu-btn" class="lg:hidden text-gray-700 text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden lg:hidden border-t bg-white px-6 pb-4">
+            <a href="sheds-for-sale.html" class="block py-3 border-b border-gray-100 font-semibold text-secondary hover:text-blue-700 transition">Buy Now</a>
+            <a href="sheds.html" class="block py-3 border-b border-gray-100 font-medium hover:text-secondary transition">Sheds - Rent-To-Own</a>
+            <a href="index.html#products" class="block py-3 border-b border-gray-100 font-medium hover:text-secondary transition">Steel Buildings</a>
+            <a href="locations.html" class="block py-3 border-b border-gray-100 font-medium hover:text-secondary transition">Service Areas</a>
+            <a href="about.html" class="block py-3 border-b border-gray-100 font-semibold text-secondary">About</a>
+            <a href="tel:+19044952325" class="block py-3 font-bold text-secondary">
+                <i class="fa-solid fa-phone mr-2"></i>(904) 495-2325
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="bg-gradient-to-br from-primary to-gray-800 text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">About Us</h1>
+            <p class="text-xl max-w-2xl mx-auto text-gray-300">North Florida's trusted source for metal buildings and sheds.</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <!-- Owner Bio -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-12">
+                    <h2 class="text-3xl font-bold text-primary mb-6">Meet the Owner</h2>
+                    <div class="prose prose-lg max-w-none text-gray-700">
+                        <p class="text-lg leading-relaxed">
+                            Owner <strong>Josh Crane</strong> has been in the metal building and shed industry for the last 15 years. With decades of hands-on experience, Josh and the team at North Florida Building Solutions are committed to providing quality structures at fair prices with exceptional customer service.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Business Info -->
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <div class="text-secondary text-3xl mb-4"><i class="fa-solid fa-building"></i></div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Our Location</h3>
+                        <p class="text-gray-600">
+                            102 Whispering Pines Trail<br>
+                            Interlachen, FL 32148
+                        </p>
+                    </div>
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <div class="text-secondary text-3xl mb-4"><i class="fa-solid fa-phone"></i></div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Contact Us</h3>
+                        <p class="text-gray-600 mb-2">
+                            <a href="tel:+19044952325" class="hover:text-secondary transition">(904) 495-2325</a>
+                        </p>
+                        <p class="text-gray-600">
+                            <a href="mailto:info@nflbuildingsolutions.com" class="hover:text-secondary transition">info@nflbuildingsolutions.com</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- What We Offer -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-12">
+                    <h2 class="text-3xl font-bold text-primary mb-6">What We Offer</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="flex items-start gap-4">
+                            <div class="text-secondary text-xl mt-1"><i class="fa-solid fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-bold text-primary">Metal Carports</h4>
+                                <p class="text-gray-600 text-sm">Single & double wide with multiple roof styles</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="text-secondary text-xl mt-1"><i class="fa-solid fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-bold text-primary">Metal Garages</h4>
+                                <p class="text-gray-600 text-sm">Fully enclosed with roll-up & walk-in doors</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="text-secondary text-xl mt-1"><i class="fa-solid fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-bold text-primary">Metal Barns</h4>
+                                <p class="text-gray-600 text-sm">Agricultural and equestrian buildings</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="text-secondary text-xl mt-1"><i class="fa-solid fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-bold text-primary">RV & Boat Covers</h4>
+                                <p class="text-gray-600 text-sm">Extra-tall covers for recreational vehicles</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="text-secondary text-xl mt-1"><i class="fa-solid fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-bold text-primary">Sheds - Rent-To-Own</h4>
+                                <p class="text-gray-600 text-sm">No credit check, free delivery & setup</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="text-secondary text-xl mt-1"><i class="fa-solid fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-bold text-primary">Shed Moving & Delivery</h4>
+                                <p class="text-gray-600 text-sm">Professional shed relocation services</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="bg-gradient-to-r from-secondary to-blue-700 rounded-2xl p-8 md:p-12 text-center text-white">
+                    <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
+                    <p class="text-lg mb-8 text-blue-100">Give us a call or browse our available inventory today.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="sheds-for-sale.html" class="bg-white hover:bg-gray-100 text-secondary px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition">
+                            Browse Sheds For Sale
+                        </a>
+                        <a href="tel:+19044952325" class="bg-primary hover:bg-gray-800 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition">
+                            <i class="fa-solid fa-phone mr-2"></i>(904) 495-2325
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <img src="logo.avif" alt="North Florida Building Solutions" class="h-12 w-auto mb-4 brightness-0 invert">
+                    <p class="text-sm">Quality metal buildings at affordable prices. Serving North Florida for over 20 years.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Products</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="sheds.html" class="hover:text-secondary transition">Sheds - Rent-To-Own</a></li>
+                        <li><a href="services/metal-carports.html" class="hover:text-secondary transition">Metal Carports</a></li>
+                        <li><a href="services/metal-garages.html" class="hover:text-secondary transition">Metal Garages</a></li>
+                        <li><a href="services/metal-barns.html" class="hover:text-secondary transition">Metal Barns</a></li>
+                        <li><a href="services/rv-covers.html" class="hover:text-secondary transition">RV Covers</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Shed Moving</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Shed Delivery</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Service Areas</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="locations/bradford-county.html" class="hover:text-secondary transition">Bradford County</a></li>
+                        <li><a href="locations/clay-county.html" class="hover:text-secondary transition">Clay County</a></li>
+                        <li><a href="locations/alachua-county.html" class="hover:text-secondary transition">Alachua County</a></li>
+                        <li><a href="locations/marion-county.html" class="hover:text-secondary transition">Marion County</a></li>
+                        <li><a href="locations/lake-county.html" class="hover:text-secondary transition">Lake County</a></li>
+                        <li><a href="locations/putnam-county.html" class="hover:text-secondary transition">Putnam County</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="tel:+19044952325" class="flex items-center gap-2 hover:text-secondary transition"><i class="fa-solid fa-phone"></i> (904) 495-2325</a></li>
+                        <li><a href="mailto:info@nflbuildingsolutions.com" class="flex items-center gap-2 hover:text-secondary transition"><i class="fa-solid fa-envelope"></i> info@nflbuildingsolutions.com</a></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-location-dot mt-1"></i> <span>102 Whispering Pines Trail<br>Interlachen, FL 32148</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p>&copy; 2026 North Florida Building Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Toggle -->
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
