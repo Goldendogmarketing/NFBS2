@@ -222,6 +222,7 @@
                                 <span class="text-gray-500 text-sm">/month</span>
                             </div>
                             <p class="text-sm text-gray-500">Cash price: <span id="modal-cash" class="font-semibold text-gray-700"></span></p>
+                            <p class="text-xs text-green-600 font-semibold mt-1"><i class="fa-solid fa-check-circle mr-1"></i>Sales tax included in monthly price</p>
                             <p class="text-xs text-gray-400 mt-1" id="modal-term"></p>
                         </div>
 
@@ -301,6 +302,11 @@
     </div>
 
     <script>
+        // Auto-calculate monthly RTO: ceil((cashPrice / 31.2) * 1.07)
+        function calcMonthly(price) {
+            return Math.ceil((price / 31.2) * 1.07);
+        }
+
         // Shed inventory data
         var sheds = [
             {
@@ -309,10 +315,9 @@
                 size: "8' x 12'",
                 style: "Economy",
                 image: "images/sheds/8x12-economy.avif",
-                monthlyRTO: 119,
                 cashPrice: 2899,
                 rtoTerm: "36 months",
-                description: "A compact and affordable storage shed, perfect for smaller yards. Great for garden tools, lawn equipment, and seasonal items.",
+                description: "A compact and affordable storage shed, perfect for smaller yards. Great for garden tools, lawn equipment, and seasonal items. Sales tax included in monthly price.",
                 features: ["LP Smart Siding", "Double Doors", "Treated Floor Joists", "Shingle Roof", "1 Window"],
                 available: true
             },
@@ -322,10 +327,9 @@
                 size: "10' x 12'",
                 style: "Utility",
                 image: "images/sheds/10x12-utility.jpg",
-                monthlyRTO: 149,
                 cashPrice: 3499,
                 rtoTerm: "36 months",
-                description: "A versatile utility shed perfect for storing lawn equipment, tools, and outdoor gear. Durable LP Smart siding stands up to Florida weather.",
+                description: "A versatile utility shed perfect for storing lawn equipment, tools, and outdoor gear. Durable LP Smart siding stands up to Florida weather. Sales tax included in monthly price.",
                 features: ["LP Smart Siding", "Double Doors", "2 Windows", "Treated Floor Joists", "Shingle Roof", "6'2\" Wall Height"],
                 available: true
             },
@@ -335,10 +339,9 @@
                 size: "10' x 16'",
                 style: "Lofted Barn",
                 image: "images/sheds/10x16-lofted-barn.jpg",
-                monthlyRTO: 199,
                 cashPrice: 4799,
                 rtoTerm: "36 months",
-                description: "Maximize your storage with a spacious loft. The barn-style roof creates overhead storage space for items you don't need daily access to.",
+                description: "Maximize your storage with a spacious loft. The barn-style roof creates overhead storage space for items you don't need daily access to. Sales tax included in monthly price.",
                 features: ["LP Smart Siding", "Loft for Extra Storage", "Double Doors", "2 Windows", "Treated Floor Joists", "Shingle Roof"],
                 available: true
             },
@@ -348,10 +351,9 @@
                 size: "12' x 16'",
                 style: "Side Lofted Barn",
                 image: "images/sheds/12x16-side-lofted-barn.jpg",
-                monthlyRTO: 229,
                 cashPrice: 5499,
                 rtoTerm: "36 months",
-                description: "Our side lofted barn offers a taller side wall for easy access with a generous loft for extra storage. A customer favorite for workshops.",
+                description: "Our side lofted barn offers a taller side wall for easy access with a generous loft for extra storage. A customer favorite for workshops. Sales tax included in monthly price.",
                 features: ["LP Smart Siding", "Side Loft", "Double Doors", "2 Windows", "Workbench Ready", "Treated Floor Joists", "Shingle Roof"],
                 available: true
             },
@@ -361,10 +363,9 @@
                 size: "12' x 20'",
                 style: "Garage",
                 image: "images/sheds/12x20-garage.jpg",
-                monthlyRTO: 289,
                 cashPrice: 6999,
                 rtoTerm: "36 months",
-                description: "A full-size garage shed with roll-up door for vehicle or equipment storage. Perfect for ATVs, golf carts, riding mowers, and workshop space.",
+                description: "A full-size garage shed with roll-up door for vehicle or equipment storage. Perfect for ATVs, golf carts, riding mowers, and workshop space. Sales tax included in monthly price.",
                 features: ["LP Smart Siding", "8x7 Roll-Up Door", "Walk-In Door", "2 Windows", "Treated Floor Joists", "Shingle Roof", "7' Wall Height"],
                 available: true
             },
@@ -374,14 +375,18 @@
                 size: "12' x 24'",
                 style: "Cabin",
                 image: "images/sheds/12x24-cabin.jpg",
-                monthlyRTO: 349,
                 cashPrice: 8499,
                 rtoTerm: "36 months",
-                description: "Our largest rent-to-own option. The cabin style features a front porch, perfect as a she-shed, man cave, home office, or guest house.",
+                description: "Our largest rent-to-own option. The cabin style features a front porch, perfect as a she-shed, man cave, home office, or guest house. Sales tax included in monthly price.",
                 features: ["LP Smart Siding", "4' Front Porch", "Double Doors", "3 Windows", "Treated Floor Joists", "Shingle Roof", "Porch Railing"],
                 available: true
             }
         ];
+
+        // Add calculated monthly to each shed
+        sheds.forEach(function(shed) {
+            shed.monthlyRTO = calcMonthly(shed.cashPrice);
+        });
 
         // Render shed cards
         var grid = document.getElementById('shed-grid');
@@ -406,6 +411,7 @@
                     '<div>' +
                     '<span class="text-2xl font-bold text-secondary">$' + shed.monthlyRTO + '</span>' +
                     '<span class="text-gray-500 text-sm">/mo</span>' +
+                    '<span class="block text-xs text-green-600 font-medium">Tax included</span>' +
                     '</div>' +
                     '<button class="bg-secondary hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-semibold text-sm transition shadow">' +
                     'Rent Now' +
