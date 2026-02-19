@@ -310,15 +310,15 @@
         // Shed inventory data
         var sheds = [
             {
-                slug: "8x12-economy-shed",
-                name: "8x12 Economy Shed",
-                size: "8' x 12'",
-                style: "Economy",
+                slug: "10x12-greenhouse-shed",
+                name: "10x12 Greenhouse Shed",
+                size: "10' x 12'",
+                style: "Greenhouse",
                 image: "images/sheds/8x12-economy.avif",
                 cashPrice: 2899,
                 rtoTerm: "36 months",
-                description: "A compact and affordable storage shed, perfect for smaller yards. Great for garden tools, lawn equipment, and seasonal items. Sales tax included in monthly price.",
-                features: ["LP Smart Siding", "Double Doors", "Treated Floor Joists", "Shingle Roof", "1 Window"],
+                description: "Made with premium pressure treated lumber, this durable Greenhouse Shed is the fastest way to start growing anything you want in Florida's fickle climate.\n\nPrewired with electricity.\n\n$100 Price reflects the Rent-To-Own Down Payment to be Finalized upon acceptance of financing agreement.",
+                features: ["Pressure Treated Lumber", "Prewired with Electricity", "Greenhouse Panels", "Double Doors", "Treated Floor Joists"],
                 available: true
             },
             {
@@ -433,7 +433,7 @@
             document.getElementById('modal-name').textContent = shed.name;
             document.getElementById('modal-size').textContent = shed.size;
             document.getElementById('modal-style').textContent = shed.style;
-            document.getElementById('modal-description').textContent = shed.description;
+            document.getElementById('modal-description').innerHTML = shed.description.replace(/\n/g, '<br>');
             document.getElementById('modal-monthly').textContent = '$' + shed.monthlyRTO;
             document.getElementById('modal-cash').textContent = '$' + shed.cashPrice.toLocaleString();
             document.getElementById('modal-term').textContent = 'Rent-to-own over ' + shed.rtoTerm + ' · No credit check';
