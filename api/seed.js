@@ -9,14 +9,32 @@ const redis = new Redis({
 });
 
 module.exports = async function handler(req, res) {
-  if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
   // Protect with a secret
-  const secret = req.query.secret;
+  const secret = req.query.secret || (req.body && req.body.secret);
   if (!secret || secret !== process.env.SEED_SECRET) {
     return res.status(403).json({ error: 'Invalid seed secret.' });
+  }
+
+  // POST - reset admin password
+  if (req.method === 'POST') {
+    const { username, password } = req.body;
+    if (!username || !password) {
+      return res.status(400).json({ error: 'Username and password are required.' });
+    }
+    try {
+      const hash = bcrypt.hashSync(password, 10);
+      await redis.set('admin_user', JSON.stringify({
+        username: username,
+        password_hash: hash
+      }));
+      return res.json({ success: true, message: 'Admin credentials updated.' });
+    } catch (err) {
+      return res.status(500).json({ error: 'Reset failed: ' + err.message });
+    }
+  }
+
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {

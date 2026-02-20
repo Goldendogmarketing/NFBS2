@@ -1,7 +1,24 @@
 const { verifyAuth } = require('../lib/auth');
-const { getAllSubmissions, createSubmission } = require('../lib/kv');
+const { getAllSubmissions, createSubmission, getPromoPopup } = require('../lib/kv');
 
 module.exports = async function handler(req, res) {
+  // --- Public GET: promo popup config (no auth) ---
+  if (req.method === 'GET' && req.query.promo === '1') {
+    const promo = await getPromoPopup();
+    if (!promo || !promo.enabled) {
+      return res.json({ enabled: false });
+    }
+    return res.json({
+      enabled: true,
+      headline: promo.headline,
+      description: promo.description,
+      discount_text: promo.discount_text,
+      button_text: promo.button_text,
+      bg_color: promo.bg_color,
+      delay_seconds: promo.delay_seconds || 4
+    });
+  }
+
   // --- Admin GET: list all submissions (auth required) ---
   if (req.method === 'GET') {
     const user = verifyAuth(req);

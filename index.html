@@ -686,7 +686,7 @@
         (function() {
             if (localStorage.getItem('nfbs_promo_dismissed')) return;
 
-            fetch('/api/promo')
+            fetch('/api/submissions?promo=1')
                 .then(function(r) { return r.json(); })
                 .then(function(promo) {
                     if (!promo || !promo.enabled) return;
