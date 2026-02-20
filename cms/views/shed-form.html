@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shed Form - NFBS Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F172A',
+                        secondary: '#2563EB',
+                        accent: '#60A5FA',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Top Nav -->
+    <nav class="bg-primary text-white px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <a href="/admin/dashboard" class="text-gray-300 hover:text-white transition">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Back to Dashboard
+            </a>
+        </div>
+        <a href="/admin/logout" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-sm transition">
+            <i class="fa-solid fa-sign-out-alt mr-1"></i> Logout
+        </a>
+    </nav>
+
+    <div class="max-w-3xl mx-auto px-6 py-8">
+        <h2 id="page-title" class="text-2xl font-bold text-primary mb-6">Add New Shed</h2>
+
+        <!-- Error Banner -->
+        <div id="error-banner" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm"></div>
+
+        <form id="shed-form" class="bg-white rounded-xl shadow-sm p-6 space-y-6">
+            <!-- Name & Slug -->
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Name *</label>
+                    <input type="text" id="name" required placeholder="e.g. 10x12 Utility Shed"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Slug *</label>
+                    <input type="text" id="slug" required placeholder="auto-generated-from-name"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none bg-gray-50">
+                </div>
+            </div>
+
+            <!-- Size & Style -->
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Size *</label>
+                    <input type="text" id="size" required placeholder="e.g. 10' x 12'"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Style *</label>
+                    <select id="style"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none">
+                        <option value="Economy">Economy</option>
+                        <option value="Utility">Utility</option>
+                        <option value="Lofted Barn">Lofted Barn</option>
+                        <option value="Side Lofted Barn">Side Lofted Barn</option>
+                        <option value="Garage">Garage</option>
+                        <option value="Cabin">Cabin</option>
+                        <option value="Greenhouse">Greenhouse</option>
+                        <option value="Custom">Custom</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Image -->
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Image</label>
+                <div id="current-image" class="hidden mb-3">
+                    <img id="image-preview" src="" alt="" class="w-32 h-32 object-cover rounded-lg border">
+                    <p class="text-xs text-gray-400 mt-1" id="image-path"></p>
+                </div>
+                <input type="file" id="image-file" accept=".jpg,.jpeg,.png,.avif,.webp"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none text-sm">
+                <p class="text-xs text-gray-400 mt-1">JPG, PNG, AVIF, or WebP. Max 10MB.</p>
+            </div>
+
+            <!-- Description -->
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
+                <textarea id="description" rows="3" placeholder="Describe this shed..."
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none"></textarea>
+            </div>
+
+            <!-- Features -->
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Features</label>
+                <div id="features-list" class="space-y-2"></div>
+                <button type="button" onclick="addFeature('')"
+                    class="mt-2 text-secondary hover:text-blue-700 text-sm font-semibold transition">
+                    <i class="fa-solid fa-plus mr-1"></i> Add Feature
+                </button>
+            </div>
+
+            <!-- Listing Type -->
+            <div class="border-t pt-6">
+                <label class="block text-sm font-semibold text-gray-700 mb-3">Listing Type *</label>
+                <div class="flex gap-6">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="list_rto" onchange="togglePricingFields()"
+                            class="w-5 h-5 text-secondary rounded border-gray-300 focus:ring-secondary">
+                        <span class="font-medium">Rent-To-Own</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="list_buy" onchange="togglePricingFields()"
+                            class="w-5 h-5 text-secondary rounded border-gray-300 focus:ring-secondary">
+                        <span class="font-medium">Buy Now</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- RTO Pricing -->
+            <div id="rto-fields" class="hidden grid md:grid-cols-2 gap-4 bg-blue-50 p-4 rounded-lg">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Cash Price (RTO Base) *</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-3 text-gray-400">$</span>
+                        <input type="number" id="cash_price" placeholder="3499" min="0"
+                            class="w-full pl-8 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none">
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1" id="monthly-calc">Monthly: calculated on save</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">RTO Term</label>
+                    <input type="text" id="rto_term" value="36 months" placeholder="36 months"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none">
+                </div>
+            </div>
+
+            <!-- Buy Now Pricing -->
+            <div id="buy-fields" class="hidden bg-purple-50 p-4 rounded-lg">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Sale Price *</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-3 text-gray-400">$</span>
+                        <input type="number" id="sale_price" placeholder="3499" min="0"
+                            class="w-full pl-8 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Available -->
+            <div class="flex items-center gap-2">
+                <input type="checkbox" id="available" checked
+                    class="w-5 h-5 text-secondary rounded border-gray-300 focus:ring-secondary">
+                <label for="available" class="font-medium text-gray-700 cursor-pointer">Available (visible on site)</label>
+            </div>
+
+            <!-- Submit -->
+            <div class="flex gap-4 pt-4">
+                <button type="submit"
+                    class="bg-secondary hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-bold text-lg transition shadow">
+                    <i class="fa-solid fa-save mr-2"></i> <span id="submit-text">Create Shed</span>
+                </button>
+                <a href="/admin/dashboard"
+                    class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold text-lg transition">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        var editId = null;
+        var featureCount = 0;
+
+        // Check if editing
+        var pathParts = window.location.pathname.split('/');
+        var idIndex = pathParts.indexOf('sheds') + 1;
+        if (idIndex > 0 && pathParts[idIndex] && pathParts[idIndex] !== 'new') {
+            editId = pathParts[idIndex];
+        }
+
+        // Auto-generate slug from name
+        document.getElementById('name').addEventListener('input', function() {
+            if (!editId) {
+                document.getElementById('slug').value = this.value
+                    .toLowerCase()
+                    .replace(/[^a-z0-9\s-]/g, '')
+                    .replace(/\s+/g, '-')
+                    .replace(/-+/g, '-')
+                    .trim();
+            }
+        });
+
+        // Calculate monthly RTO preview
+        document.getElementById('cash_price').addEventListener('input', function() {
+            var price = parseInt(this.value);
+            if (price > 0) {
+                var monthly = Math.ceil((price / 31.2) * 1.07);
+                document.getElementById('monthly-calc').textContent = 'Monthly: ~$' + monthly + '/mo';
+            } else {
+                document.getElementById('monthly-calc').textContent = 'Monthly: calculated on save';
+            }
+        });
+
+        function togglePricingFields() {
+            document.getElementById('rto-fields').classList.toggle('hidden', !document.getElementById('list_rto').checked);
+            document.getElementById('buy-fields').classList.toggle('hidden', !document.getElementById('list_buy').checked);
+        }
+
+        function addFeature(value) {
+            featureCount++;
+            var div = document.createElement('div');
+            div.className = 'flex gap-2';
+            div.id = 'feature-row-' + featureCount;
+            var rowId = featureCount;
+            div.innerHTML = '<input type="text" value="' + (value || '').replace(/"/g, '&quot;') + '" placeholder="e.g. LP Smart Siding" ' +
+                'class="feature-input flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none text-sm">' +
+                '<button type="button" onclick="removeFeature(' + rowId + ')" class="text-red-400 hover:text-red-600 px-2 transition"><i class="fa-solid fa-xmark"></i></button>';
+            document.getElementById('features-list').appendChild(div);
+        }
+
+        function removeFeature(id) {
+            var el = document.getElementById('feature-row-' + id);
+            if (el) el.remove();
+        }
+
+        function getFeatures() {
+            var inputs = document.querySelectorAll('.feature-input');
+            var features = [];
+            inputs.forEach(function(input) {
+                var val = input.value.trim();
+                if (val) features.push(val);
+            });
+            return features;
+        }
+
+        // Load shed data if editing
+        if (editId) {
+            document.getElementById('page-title').textContent = 'Edit Shed';
+            document.getElementById('submit-text').textContent = 'Save Changes';
+            document.title = 'Edit Shed - NFBS Admin';
+
+            fetch('/api/admin/sheds/' + editId)
+                .then(function(r) { return r.json(); })
+                .then(function(shed) {
+                    document.getElementById('name').value = shed.name;
+                    document.getElementById('slug').value = shed.slug;
+                    document.getElementById('size').value = shed.size;
+                    document.getElementById('style').value = shed.style;
+                    document.getElementById('description').value = shed.description;
+                    document.getElementById('available').checked = !!shed.available;
+                    document.getElementById('list_rto').checked = !!shed.list_rto;
+                    document.getElementById('list_buy').checked = !!shed.list_buy;
+
+                    if (shed.cash_price) document.getElementById('cash_price').value = shed.cash_price;
+                    if (shed.rto_term) document.getElementById('rto_term').value = shed.rto_term;
+                    if (shed.sale_price) document.getElementById('sale_price').value = shed.sale_price;
+
+                    if (shed.image) {
+                        document.getElementById('current-image').classList.remove('hidden');
+                        document.getElementById('image-preview').src = '/' + shed.image;
+                        document.getElementById('image-path').textContent = shed.image;
+                    }
+
+                    if (shed.features && shed.features.length > 0) {
+                        shed.features.forEach(function(f) { addFeature(f); });
+                    } else {
+                        addFeature('');
+                    }
+
+                    togglePricingFields();
+
+                    // Trigger monthly calc display
+                    document.getElementById('cash_price').dispatchEvent(new Event('input'));
+                });
+        } else {
+            addFeature('');
+        }
+
+        // Form submit
+        document.getElementById('shed-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var listRto = document.getElementById('list_rto').checked;
+            var listBuy = document.getElementById('list_buy').checked;
+
+            if (!listRto && !listBuy) {
+                showError('Please select at least one listing type (Rent-To-Own or Buy Now).');
+                return;
+            }
+
+            if (listRto && !document.getElementById('cash_price').value) {
+                showError('Cash Price is required for Rent-To-Own listings.');
+                return;
+            }
+
+            if (listBuy && !document.getElementById('sale_price').value) {
+                showError('Sale Price is required for Buy Now listings.');
+                return;
+            }
+
+            var formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('slug', document.getElementById('slug').value);
+            formData.append('size', document.getElementById('size').value);
+            formData.append('style', document.getElementById('style').value);
+            formData.append('description', document.getElementById('description').value);
+            formData.append('features', JSON.stringify(getFeatures()));
+            formData.append('available', document.getElementById('available').checked ? '1' : '0');
+            formData.append('list_rto', listRto ? '1' : '0');
+            formData.append('list_buy', listBuy ? '1' : '0');
+            formData.append('cash_price', document.getElementById('cash_price').value || '');
+            formData.append('rto_term', document.getElementById('rto_term').value || '36 months');
+            formData.append('sale_price', document.getElementById('sale_price').value || '');
+
+            var fileInput = document.getElementById('image-file');
+            if (fileInput.files.length > 0) {
+                formData.append('image', fileInput.files[0]);
+            }
+
+            var url = editId ? '/api/admin/sheds/' + editId : '/api/admin/sheds';
+            var method = editId ? 'PUT' : 'POST';
+
+            fetch(url, { method: method, body: formData })
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    if (data.error) {
+                        showError(data.error);
+                    } else {
+                        window.location.href = '/admin/dashboard';
+                    }
+                })
+                .catch(function(err) {
+                    showError('Something went wrong. Please try again.');
+                });
+        });
+
+        function showError(msg) {
+            var banner = document.getElementById('error-banner');
+            banner.textContent = msg;
+            banner.classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

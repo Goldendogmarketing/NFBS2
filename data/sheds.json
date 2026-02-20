@@ -1,75 +1,15 @@
 {
   "sheds": [
     {
-      "slug": "10x12-greenhouse-shed",
-      "name": "10x12 Greenhouse Shed",
-      "size": "10' x 12'",
-      "style": "Greenhouse",
-      "image": "images/sheds/8x12-economy.jpg",
-      "cashPrice": 2899,
-      "rtoTerm": "36 months",
-      "description": "Made with premium pressure treated lumber, this durable Greenhouse Shed is the fastest way to start growing anything you want in Florida's fickle climate. Prewired with electricity. $100 Price reflects the Rent-To-Own Down Payment to be Finalized upon acceptance of financing agreement.",
-      "features": ["Pressure Treated Lumber", "Prewired with Electricity", "Greenhouse Panels", "Double Doors", "Treated Floor Joists"],
-      "available": true
-    },
-    {
-      "slug": "10x12-utility-shed",
-      "name": "10x12 Utility Shed",
-      "size": "10' x 12'",
-      "style": "Utility",
-      "image": "images/sheds/10x12-utility.jpg",
-      "cashPrice": 3499,
-      "rtoTerm": "36 months",
-      "description": "A versatile utility shed perfect for storing lawn equipment, tools, and outdoor gear. Durable LP Smart siding stands up to Florida weather. Sales tax included in monthly price.",
-      "features": ["LP Smart Siding", "Double Doors", "2 Windows", "Treated Floor Joists", "Shingle Roof", "6'2\" Wall Height"],
-      "available": true
-    },
-    {
-      "slug": "10x16-lofted-barn",
-      "name": "10x16 Lofted Barn",
-      "size": "10' x 16'",
-      "style": "Lofted Barn",
-      "image": "images/sheds/10x16-lofted-barn.jpg",
-      "cashPrice": 4799,
-      "rtoTerm": "36 months",
-      "description": "Maximize your storage with a spacious loft. The barn-style roof creates overhead storage space for items you don't need daily access to. Sales tax included in monthly price.",
-      "features": ["LP Smart Siding", "Loft for Extra Storage", "Double Doors", "2 Windows", "Treated Floor Joists", "Shingle Roof"],
-      "available": true
-    },
-    {
-      "slug": "12x16-side-lofted-barn",
-      "name": "12x16 Side Lofted Barn",
-      "size": "12' x 16'",
-      "style": "Side Lofted Barn",
-      "image": "images/sheds/12x16-side-lofted-barn.jpg",
-      "cashPrice": 5499,
-      "rtoTerm": "36 months",
-      "description": "Our side lofted barn offers a taller side wall for easy access with a generous loft for extra storage. A customer favorite for workshops. Sales tax included in monthly price.",
-      "features": ["LP Smart Siding", "Side Loft", "Double Doors", "2 Windows", "Workbench Ready", "Treated Floor Joists", "Shingle Roof"],
-      "available": true
-    },
-    {
-      "slug": "12x20-garage-shed",
-      "name": "12x20 Garage Shed",
-      "size": "12' x 20'",
+      "slug": "10x12",
+      "name": "10x12",
+      "size": "10x12",
       "style": "Garage",
-      "image": "images/sheds/12x20-garage.jpg",
-      "cashPrice": 6999,
-      "rtoTerm": "36 months",
-      "description": "A full-size garage shed with roll-up door for vehicle or equipment storage. Perfect for ATVs, golf carts, riding mowers, and workshop space. Sales tax included in monthly price.",
-      "features": ["LP Smart Siding", "8x7 Roll-Up Door", "Walk-In Door", "2 Windows", "Treated Floor Joists", "Shingle Roof", "7' Wall Height"],
-      "available": true
-    },
-    {
-      "slug": "12x24-cabin-shed",
-      "name": "12x24 Cabin Shed",
-      "size": "12' x 24'",
-      "style": "Cabin",
-      "image": "images/sheds/12x24-cabin.jpg",
-      "cashPrice": 8499,
-      "rtoTerm": "36 months",
-      "description": "Our largest rent-to-own option. The cabin style features a front porch, perfect as a she-shed, man cave, home office, or guest house. Sales tax included in monthly price.",
-      "features": ["LP Smart Siding", "4' Front Porch", "Double Doors", "3 Windows", "Treated Floor Joists", "Shingle Roof", "Porch Railing"],
+      "image": "images/sheds/carport.jpg",
+      "cashPrice": 5999,
+      "rtoTerm": "60 months",
+      "description": "big nice shed",
+      "features": [],
       "available": true
     }
   ]

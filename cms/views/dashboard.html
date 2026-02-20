@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - NFBS Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F172A',
+                        secondary: '#2563EB',
+                        accent: '#60A5FA',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Top Nav -->
+    <nav class="bg-primary text-white px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <h1 class="text-xl font-bold">NFBS Admin</h1>
+            <span class="text-gray-400 text-sm">Shed Inventory</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="/" target="_blank" class="text-gray-300 hover:text-white text-sm transition">
+                <i class="fa-solid fa-external-link mr-1"></i> View Site
+            </a>
+            <a href="/admin/settings" class="text-gray-300 hover:text-white text-sm transition">
+                <i class="fa-solid fa-gear mr-1"></i> Settings
+            </a>
+            <a href="/admin/logout" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-sm transition">
+                <i class="fa-solid fa-sign-out-alt mr-1"></i> Logout
+            </a>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+                <div class="text-2xl font-bold text-primary" id="stat-total">-</div>
+                <div class="text-sm text-gray-500">Total Sheds</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+                <div class="text-2xl font-bold text-green-600" id="stat-available">-</div>
+                <div class="text-sm text-gray-500">Available</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+                <div class="text-2xl font-bold text-blue-600" id="stat-rto">-</div>
+                <div class="text-sm text-gray-500">Rent-To-Own</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+                <div class="text-2xl font-bold text-purple-600" id="stat-buy">-</div>
+                <div class="text-sm text-gray-500">Buy Now</div>
+            </div>
+        </div>
+
+        <!-- Header + Add Button -->
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-primary">All Sheds</h2>
+            <a href="/admin/sheds/new" class="bg-secondary hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition shadow">
+                <i class="fa-solid fa-plus mr-2"></i> Add New Shed
+            </a>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-50 border-b">
+                        <tr>
+                            <th class="px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Image</th>
+                            <th class="px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Name</th>
+                            <th class="px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Size</th>
+                            <th class="px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Style</th>
+                            <th class="px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Pricing</th>
+                            <th class="px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Listing</th>
+                            <th class="px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Available</th>
+                            <th class="px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="shed-table">
+                    </tbody>
+                </table>
+            </div>
+            <div id="empty-state" class="hidden text-center py-12 text-gray-400">
+                <i class="fa-solid fa-warehouse text-4xl mb-4"></i>
+                <p>No sheds yet. Click "Add New Shed" to get started.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var sheds = [];
+
+        function loadSheds() {
+            fetch('/api/admin/sheds')
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    sheds = data;
+                    renderStats();
+                    renderTable();
+                });
+        }
+
+        function renderStats() {
+            document.getElementById('stat-total').textContent = sheds.length;
+            document.getElementById('stat-available').textContent = sheds.filter(function(s) { return s.available; }).length;
+            document.getElementById('stat-rto').textContent = sheds.filter(function(s) { return s.list_rto; }).length;
+            document.getElementById('stat-buy').textContent = sheds.filter(function(s) { return s.list_buy; }).length;
+        }
+
+        function renderTable() {
+            var tbody = document.getElementById('shed-table');
+            var empty = document.getElementById('empty-state');
+
+            if (sheds.length === 0) {
+                tbody.innerHTML = '';
+                empty.classList.remove('hidden');
+                return;
+            }
+            empty.classList.add('hidden');
+
+            tbody.innerHTML = sheds.map(function(shed) {
+                var pricing = [];
+                if (shed.list_rto && shed.cash_price) pricing.push('RTO: $' + shed.cash_price.toLocaleString());
+                if (shed.list_buy && shed.sale_price) pricing.push('Buy: $' + shed.sale_price.toLocaleString());
+                if (pricing.length === 0) pricing.push('-');
+
+                var badges = '';
+                if (shed.list_rto) badges += '<span class="bg-blue-100 text-blue-700 text-xs font-semibold px-2 py-0.5 rounded-full mr-1">RTO</span>';
+                if (shed.list_buy) badges += '<span class="bg-purple-100 text-purple-700 text-xs font-semibold px-2 py-0.5 rounded-full">Buy Now</span>';
+                if (!badges) badges = '<span class="text-gray-400 text-xs">None</span>';
+
+                var imgSrc = shed.image || '';
+                var imgTag = imgSrc
+                    ? '<img src="/' + imgSrc + '" alt="" class="w-12 h-12 object-cover rounded-lg">'
+                    : '<div class="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center text-gray-400"><i class="fa-solid fa-image"></i></div>';
+
+                return '<tr class="border-b hover:bg-gray-50">' +
+                    '<td class="px-4 py-3">' + imgTag + '</td>' +
+                    '<td class="px-4 py-3 font-semibold">' + shed.name + '</td>' +
+                    '<td class="px-4 py-3 text-sm text-gray-600">' + shed.size + '</td>' +
+                    '<td class="px-4 py-3 text-sm text-gray-600">' + shed.style + '</td>' +
+                    '<td class="px-4 py-3 text-sm">' + pricing.join('<br>') + '</td>' +
+                    '<td class="px-4 py-3">' + badges + '</td>' +
+                    '<td class="px-4 py-3">' +
+                        '<button onclick="toggleAvailable(' + shed.id + ')" class="relative inline-flex h-6 w-11 items-center rounded-full transition ' + (shed.available ? 'bg-green-500' : 'bg-gray-300') + '">' +
+                            '<span class="inline-block h-4 w-4 rounded-full bg-white transition transform ' + (shed.available ? 'translate-x-6' : 'translate-x-1') + '"></span>' +
+                        '</button>' +
+                    '</td>' +
+                    '<td class="px-4 py-3">' +
+                        '<div class="flex gap-2">' +
+                            '<a href="/admin/sheds/' + shed.id + '/edit" class="text-secondary hover:text-blue-700 transition" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>' +
+                            '<button onclick="deleteShed(' + shed.id + ', \'' + shed.name.replace(/'/g, "\\'") + '\')" class="text-red-400 hover:text-red-600 transition" title="Delete"><i class="fa-solid fa-trash"></i></button>' +
+                        '</div>' +
+                    '</td>' +
+                '</tr>';
+            }).join('');
+        }
+
+        function toggleAvailable(id) {
+            fetch('/api/admin/sheds/' + id + '/toggle', { method: 'PATCH' })
+                .then(function() { loadSheds(); });
+        }
+
+        function deleteShed(id, name) {
+            if (!confirm('Delete "' + name + '"? This cannot be undone.')) return;
+            fetch('/api/admin/sheds/' + id, { method: 'DELETE' })
+                .then(function() { loadSheds(); });
+        }
+
+        loadSheds();
+    </script>
+</body>
+</html>
