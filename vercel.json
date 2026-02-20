@@ -6,6 +6,7 @@
     { "source": "/admin/login", "destination": "/admin/login.html" },
     { "source": "/admin/logout", "destination": "/api/auth/logout" },
     { "source": "/admin/settings", "destination": "/admin/settings.html" },
+    { "source": "/admin/leads", "destination": "/admin/leads.html" },
     { "source": "/admin", "destination": "/admin/dashboard.html" }
   ],
   "headers": [

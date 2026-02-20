@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leads - NFBS Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F172A',
+                        secondary: '#2563EB',
+                        accent: '#60A5FA',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Top Nav -->
+    <nav class="bg-primary text-white px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <h1 class="text-xl font-bold">NFBS Admin</h1>
+            <span class="text-gray-400 text-sm">Leads</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="/" target="_blank" class="text-gray-300 hover:text-white text-sm transition">
+                <i class="fa-solid fa-external-link mr-1"></i> View Site
+            </a>
+            <a href="/admin/dashboard" class="text-gray-300 hover:text-white text-sm transition">
+                <i class="fa-solid fa-warehouse mr-1"></i> Sheds
+            </a>
+            <a href="/admin/settings" class="text-gray-300 hover:text-white text-sm transition">
+                <i class="fa-solid fa-gear mr-1"></i> Settings
+            </a>
+            <a href="/admin/logout" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-sm transition">
+                <i class="fa-solid fa-sign-out-alt mr-1"></i> Logout
+            </a>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+                <div class="text-2xl font-bold text-primary" id="stat-total">-</div>
+                <div class="text-sm text-gray-500">Total Leads</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+                <div class="text-2xl font-bold text-yellow-600" id="stat-new">-</div>
+                <div class="text-sm text-gray-500">New</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+                <div class="text-2xl font-bold text-blue-600" id="stat-contacted">-</div>
+                <div class="text-sm text-gray-500">Contacted</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+                <div class="text-2xl font-bold text-gray-500" id="stat-closed">-</div>
+                <div class="text-sm text-gray-500">Closed</div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="flex flex-wrap gap-2 mb-6">
+            <span class="text-sm font-semibold text-gray-500 mr-2 self-center">Type:</span>
+            <button onclick="setFilter('type', '')" class="filter-type px-3 py-1 rounded-full text-sm font-semibold bg-primary text-white transition">All</button>
+            <button onclick="setFilter('type', 'rto')" class="filter-type px-3 py-1 rounded-full text-sm font-semibold bg-gray-200 text-gray-600 hover:bg-blue-100 transition">RTO</button>
+            <button onclick="setFilter('type', 'purchase')" class="filter-type px-3 py-1 rounded-full text-sm font-semibold bg-gray-200 text-gray-600 hover:bg-purple-100 transition">Purchase</button>
+            <button onclick="setFilter('type', 'quote')" class="filter-type px-3 py-1 rounded-full text-sm font-semibold bg-gray-200 text-gray-600 hover:bg-green-100 transition">Quote</button>
+
+            <span class="text-sm font-semibold text-gray-500 mr-2 ml-4 self-center">Status:</span>
+            <button onclick="setFilter('status', '')" class="filter-status px-3 py-1 rounded-full text-sm font-semibold bg-primary text-white transition">All</button>
+            <button onclick="setFilter('status', 'new')" class="filter-status px-3 py-1 rounded-full text-sm font-semibold bg-gray-200 text-gray-600 hover:bg-yellow-100 transition">New</button>
+            <button onclick="setFilter('status', 'contacted')" class="filter-status px-3 py-1 rounded-full text-sm font-semibold bg-gray-200 text-gray-600 hover:bg-blue-100 transition">Contacted</button>
+            <button onclick="setFilter('status', 'closed')" class="filter-status px-3 py-1 rounded-full text-sm font-semibold bg-gray-200 text-gray-600 hover:bg-gray-300 transition">Closed</button>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-50 border-b">
+                        <tr>
+                            <th class="px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Date</th>
+                            <th class="px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Type</th>
+                            <th class="px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Name</th>
+                            <th class="px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Phone</th>
+                            <th class="px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Email</th>
+                            <th class="px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Details</th>
+                            <th class="px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Status</th>
+                            <th class="px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leads-table">
+                    </tbody>
+                </table>
+            </div>
+            <div id="empty-state" class="hidden text-center py-12 text-gray-400">
+                <i class="fa-solid fa-inbox text-4xl mb-4"></i>
+                <p>No leads yet. Submissions from your website forms will appear here.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var allSubmissions = [];
+        var filterType = '';
+        var filterStatus = '';
+
+        function loadSubmissions() {
+            fetch('/api/submissions')
+                .then(function(r) {
+                    if (r.status === 401) {
+                        window.location.href = '/admin/login';
+                        return null;
+                    }
+                    return r.json();
+                })
+                .then(function(data) {
+                    if (!data) return;
+                    allSubmissions = data;
+                    renderStats();
+                    renderTable();
+                });
+        }
+
+        function renderStats() {
+            document.getElementById('stat-total').textContent = allSubmissions.length;
+            document.getElementById('stat-new').textContent = allSubmissions.filter(function(s) { return s.status === 'new'; }).length;
+            document.getElementById('stat-contacted').textContent = allSubmissions.filter(function(s) { return s.status === 'contacted'; }).length;
+            document.getElementById('stat-closed').textContent = allSubmissions.filter(function(s) { return s.status === 'closed'; }).length;
+        }
+
+        function getFiltered() {
+            return allSubmissions.filter(function(s) {
+                if (filterType && s.type !== filterType) return false;
+                if (filterStatus && s.status !== filterStatus) return false;
+                return true;
+            });
+        }
+
+        function setFilter(kind, value) {
+            if (kind === 'type') filterType = value;
+            if (kind === 'status') filterStatus = value;
+
+            // Update button styles
+            var className = 'filter-' + kind;
+            var buttons = document.querySelectorAll('.' + className);
+            buttons.forEach(function(btn, i) {
+                var isActive = (value === '' && i === 0) || btn.textContent.toLowerCase().replace(' ', '') === value;
+                if (value === '' && i === 0) isActive = true;
+                if (isActive) {
+                    btn.className = className + ' px-3 py-1 rounded-full text-sm font-semibold bg-primary text-white transition';
+                } else {
+                    btn.className = className + ' px-3 py-1 rounded-full text-sm font-semibold bg-gray-200 text-gray-600 hover:bg-gray-300 transition';
+                }
+            });
+
+            renderTable();
+        }
+
+        function formatDate(iso) {
+            var d = new Date(iso);
+            return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' +
+                   d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        }
+
+        function typeBadge(type) {
+            var colors = { rto: 'bg-blue-100 text-blue-700', purchase: 'bg-purple-100 text-purple-700', quote: 'bg-green-100 text-green-700' };
+            var labels = { rto: 'RTO', purchase: 'Purchase', quote: 'Quote' };
+            return '<span class="' + (colors[type] || 'bg-gray-100 text-gray-600') + ' text-xs font-semibold px-2 py-0.5 rounded-full">' + (labels[type] || type) + '</span>';
+        }
+
+        function statusSelect(id, current) {
+            var options = ['new', 'contacted', 'closed'];
+            var html = '<select onchange="updateStatus(' + id + ', this.value)" class="text-xs border border-gray-300 rounded-lg px-2 py-1 focus:ring-2 focus:ring-secondary focus:border-transparent">';
+            options.forEach(function(opt) {
+                html += '<option value="' + opt + '"' + (opt === current ? ' selected' : '') + '>' + opt.charAt(0).toUpperCase() + opt.slice(1) + '</option>';
+            });
+            html += '</select>';
+            return html;
+        }
+
+        function getDetails(s) {
+            if (s.type === 'rto' || s.type === 'purchase') {
+                var parts = [];
+                if (s.shed_name) parts.push(s.shed_name);
+                if (s.shed_price) parts.push(s.shed_price);
+                return parts.join(' - ') || '-';
+            }
+            if (s.type === 'quote') {
+                var parts = [];
+                if (s.building_type) parts.push(s.building_type);
+                if (s.building_size) parts.push(s.building_size);
+                return parts.join(' ') || '-';
+            }
+            return '-';
+        }
+
+        function renderTable() {
+            var filtered = getFiltered();
+            var tbody = document.getElementById('leads-table');
+            var empty = document.getElementById('empty-state');
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = '';
+                empty.classList.remove('hidden');
+                return;
+            }
+            empty.classList.add('hidden');
+
+            tbody.innerHTML = filtered.map(function(s) {
+                var extra = '';
+                if (s.address) extra += '<div class="text-xs text-gray-400">' + s.address + '</div>';
+                if (s.notes) extra += '<div class="text-xs text-gray-400 italic mt-1">"' + s.notes + '"</div>';
+                if (s.zip) extra += '<div class="text-xs text-gray-400">ZIP: ' + s.zip + '</div>';
+
+                return '<tr class="border-b hover:bg-gray-50">' +
+                    '<td class="px-4 py-3 text-sm text-gray-500 whitespace-nowrap">' + formatDate(s.created_at) + '</td>' +
+                    '<td class="px-4 py-3">' + typeBadge(s.type) + '</td>' +
+                    '<td class="px-4 py-3 font-semibold">' + s.name + '</td>' +
+                    '<td class="px-4 py-3 text-sm"><a href="tel:' + s.phone + '" class="text-secondary hover:underline">' + s.phone + '</a></td>' +
+                    '<td class="px-4 py-3 text-sm">' + (s.email ? '<a href="mailto:' + s.email + '" class="text-secondary hover:underline">' + s.email + '</a>' : '-') + '</td>' +
+                    '<td class="px-4 py-3 text-sm">' + getDetails(s) + extra + '</td>' +
+                    '<td class="px-4 py-3">' + statusSelect(s.id, s.status) + '</td>' +
+                    '<td class="px-4 py-3">' +
+                        '<button onclick="deleteLead(' + s.id + ', \'' + s.name.replace(/'/g, "\\'") + '\')" class="text-red-400 hover:text-red-600 transition" title="Delete"><i class="fa-solid fa-trash"></i></button>' +
+                    '</td>' +
+                '</tr>';
+            }).join('');
+        }
+
+        function updateStatus(id, status) {
+            fetch('/api/admin/submissions/' + id, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: status })
+            }).then(function() { loadSubmissions(); });
+        }
+
+        function deleteLead(id, name) {
+            if (!confirm('Delete lead from "' + name + '"? This cannot be undone.')) return;
+            fetch('/api/admin/submissions/' + id, { method: 'DELETE' })
+                .then(function() { loadSubmissions(); });
+        }
+
+        loadSubmissions();
+    </script>
+</body>
+</html>
