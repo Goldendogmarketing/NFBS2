@@ -307,7 +307,7 @@
         // Shed inventory - loaded from CMS-managed JSON
         var availableSheds = [];
 
-        fetch('data/sheds-for-sale.json')
+        fetch('/api/sheds-for-sale')
             .then(function(r) { return r.json(); })
             .then(function(data) {
                 availableSheds = data.sheds.filter(function(s) { return s.available; });
