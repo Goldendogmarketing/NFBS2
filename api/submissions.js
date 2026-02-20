@@ -1,7 +1,26 @@
 const { verifyAuth } = require('../lib/auth');
-const { getAllSubmissions, createSubmission, getPromoPopup } = require('../lib/kv');
+const { getAllSubmissions, createSubmission, getPromoPopup, getAdminUser } = require('../lib/kv');
 
 module.exports = async function handler(req, res) {
+  // --- Debug: test login flow (temporary) ---
+  if (req.method === 'GET' && req.query.debug === 'login') {
+    try {
+      var bcrypt = require('bcryptjs');
+      var user = await getAdminUser();
+      var result = {
+        v: 3,
+        userType: typeof user,
+        hasUser: !!user,
+        username: user ? user.username : null,
+        hashStart: user && user.password_hash ? user.password_hash.substring(0, 10) : null,
+        match: user && user.password_hash ? bcrypt.compareSync('Franklin22!', user.password_hash) : false
+      };
+      return res.json(result);
+    } catch (e) {
+      return res.json({ error: e.message });
+    }
+  }
+
   // --- Public GET: promo popup config (no auth) ---
   if (req.method === 'GET' && req.query.promo === '1') {
     const promo = await getPromoPopup();
