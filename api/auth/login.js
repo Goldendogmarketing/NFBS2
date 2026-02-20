@@ -23,6 +23,6 @@ module.exports = async function handler(req, res) {
     setAuthCookie(res, token);
     res.json({ success: true });
   } catch (err) {
-    res.status(500).json({ error: 'Login failed.' });
+    res.status(500).json({ error: 'Login failed: ' + err.message });
   }
 };
