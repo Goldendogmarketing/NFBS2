@@ -25,7 +25,7 @@
     <nav class="bg-primary text-white px-6 py-4 flex justify-between items-center">
         <div class="flex items-center gap-4">
             <h1 class="text-xl font-bold">NFBS Admin</h1>
-            <span class="text-gray-400 text-sm">Shed Inventory</span>
+            <span class="text-gray-400 text-sm">Dashboard</span>
         </div>
         <div class="flex items-center gap-4">
             <a href="/" target="_blank" class="text-gray-300 hover:text-white text-sm transition">
@@ -47,6 +47,138 @@
     </nav>
 
     <div class="max-w-7xl mx-auto px-6 py-8">
+
+        <!-- ==================== PROMO POPUP SECTION ==================== -->
+        <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-bullhorn text-orange-500 text-xl"></i>
+                    <h2 class="text-xl font-bold text-primary">Promo Popup</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <!-- Quick Toggle -->
+                    <div class="flex items-center gap-2">
+                        <span id="promo-status-label" class="text-sm font-semibold text-gray-400">OFF</span>
+                        <button type="button" id="promo-toggle" onclick="togglePromo()" class="relative inline-flex h-7 w-12 items-center rounded-full transition bg-gray-300">
+                            <span id="promo-toggle-dot" class="inline-block h-5 w-5 rounded-full bg-white transition transform translate-x-1"></span>
+                        </button>
+                    </div>
+                    <a href="/admin/promo" class="bg-secondary hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+                        <i class="fa-solid fa-pen-to-square mr-1"></i> Edit Promo
+                    </a>
+                </div>
+            </div>
+
+            <!-- Promo Info Bar -->
+            <div id="promo-info" class="bg-gray-50 rounded-lg p-4 mb-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                    <div>
+                        <span class="text-gray-500">Discount:</span>
+                        <span id="promo-discount" class="font-semibold ml-1">-</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-500">Headline:</span>
+                        <span id="promo-headline" class="font-semibold ml-1">-</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-500">Delay:</span>
+                        <span id="promo-delay" class="font-semibold ml-1">-</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-500">Signups:</span>
+                        <span id="promo-signup-count" class="font-bold text-orange-600 ml-1">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Promo Leads -->
+            <div>
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-semibold text-gray-700 text-sm">Recent Promo Signups</h3>
+                    <a href="/admin/leads" onclick="localStorage.setItem('leads_filter_type','promo')" class="text-secondary hover:text-blue-700 text-sm font-semibold transition">
+                        View All <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                <div id="promo-leads-table" class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-gray-50 border-b">
+                            <tr>
+                                <th class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase">Date</th>
+                                <th class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase">Name</th>
+                                <th class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase">Email</th>
+                                <th class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="promo-leads-body"></tbody>
+                    </table>
+                </div>
+                <div id="promo-leads-empty" class="hidden text-center py-6 text-gray-400 text-sm">
+                    <i class="fa-solid fa-inbox text-2xl mb-2"></i>
+                    <p>No promo signups yet. Enable the popup to start collecting leads.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== RECENT LEADS SECTION ==================== -->
+        <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-inbox text-secondary text-xl"></i>
+                    <h2 class="text-xl font-bold text-primary">Recent Leads</h2>
+                </div>
+                <a href="/admin/leads" class="text-secondary hover:text-blue-700 text-sm font-semibold transition">
+                    View All Leads <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+
+            <!-- Lead Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
+                <div class="bg-gray-50 rounded-lg p-3 text-center">
+                    <div class="text-lg font-bold text-primary" id="lead-stat-total">-</div>
+                    <div class="text-xs text-gray-500">Total</div>
+                </div>
+                <div class="bg-yellow-50 rounded-lg p-3 text-center">
+                    <div class="text-lg font-bold text-yellow-600" id="lead-stat-new">-</div>
+                    <div class="text-xs text-gray-500">New</div>
+                </div>
+                <div class="bg-blue-50 rounded-lg p-3 text-center">
+                    <div class="text-lg font-bold text-blue-600" id="lead-stat-rto">-</div>
+                    <div class="text-xs text-gray-500">RTO Apps</div>
+                </div>
+                <div class="bg-green-50 rounded-lg p-3 text-center">
+                    <div class="text-lg font-bold text-green-600" id="lead-stat-quote">-</div>
+                    <div class="text-xs text-gray-500">Quotes</div>
+                </div>
+                <div class="bg-purple-50 rounded-lg p-3 text-center">
+                    <div class="text-lg font-bold text-purple-600" id="lead-stat-purchase">-</div>
+                    <div class="text-xs text-gray-500">Purchases</div>
+                </div>
+            </div>
+
+            <!-- Recent Leads Table -->
+            <div id="all-leads-table" class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-gray-50 border-b">
+                        <tr>
+                            <th class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase">Date</th>
+                            <th class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase">Type</th>
+                            <th class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase">Name</th>
+                            <th class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase">Phone</th>
+                            <th class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase">Email</th>
+                            <th class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase">Details</th>
+                            <th class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="all-leads-body"></tbody>
+                </table>
+            </div>
+            <div id="all-leads-empty" class="hidden text-center py-6 text-gray-400 text-sm">
+                <i class="fa-solid fa-inbox text-2xl mb-2"></i>
+                <p>No leads yet. Submissions from your website will appear here.</p>
+            </div>
+        </div>
+
+        <!-- ==================== SHED INVENTORY SECTION ==================== -->
         <!-- Stats -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <div class="bg-white rounded-xl p-4 shadow-sm">
@@ -104,6 +236,186 @@
 
     <script>
         var sheds = [];
+        var promoConfig = null;
+        var promoEnabled = false;
+
+        // ==================== PROMO SECTION ====================
+
+        function loadPromo() {
+            // Load promo config
+            fetch('/api/admin/promo')
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    promoConfig = data;
+                    promoEnabled = !!data.enabled;
+                    renderPromoToggle();
+                    renderPromoInfo();
+                });
+
+            // Load all leads (used for both promo and recent leads sections)
+            fetch('/api/submissions')
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    if (!data || !Array.isArray(data)) return;
+                    var promoLeads = data.filter(function(s) { return s.type === 'promo'; });
+                    renderPromoLeads(promoLeads);
+                    renderAllLeads(data);
+                });
+        }
+
+        function renderPromoToggle() {
+            var toggle = document.getElementById('promo-toggle');
+            var dot = document.getElementById('promo-toggle-dot');
+            var label = document.getElementById('promo-status-label');
+            if (promoEnabled) {
+                toggle.classList.remove('bg-gray-300');
+                toggle.classList.add('bg-green-500');
+                dot.classList.remove('translate-x-1');
+                dot.classList.add('translate-x-6');
+                label.textContent = 'LIVE';
+                label.classList.remove('text-gray-400');
+                label.classList.add('text-green-600');
+            } else {
+                toggle.classList.remove('bg-green-500');
+                toggle.classList.add('bg-gray-300');
+                dot.classList.remove('translate-x-6');
+                dot.classList.add('translate-x-1');
+                label.textContent = 'OFF';
+                label.classList.remove('text-green-600');
+                label.classList.add('text-gray-400');
+            }
+        }
+
+        function renderPromoInfo() {
+            if (!promoConfig) return;
+            document.getElementById('promo-discount').textContent = promoConfig.discount_text || 'Not set';
+            document.getElementById('promo-headline').textContent = promoConfig.headline || 'Not set';
+            document.getElementById('promo-delay').textContent = (promoConfig.delay_seconds || 4) + 's';
+        }
+
+        function togglePromo() {
+            promoEnabled = !promoEnabled;
+            renderPromoToggle();
+
+            // Save to API
+            var payload = promoConfig ? Object.assign({}, promoConfig) : {};
+            payload.enabled = promoEnabled;
+
+            fetch('/api/admin/promo', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (data.error) {
+                    // Revert on error
+                    promoEnabled = !promoEnabled;
+                    renderPromoToggle();
+                }
+            });
+        }
+
+        function renderPromoLeads(leads) {
+            var tbody = document.getElementById('promo-leads-body');
+            var empty = document.getElementById('promo-leads-empty');
+            var countEl = document.getElementById('promo-signup-count');
+
+            countEl.textContent = leads.length;
+
+            if (leads.length === 0) {
+                tbody.innerHTML = '';
+                empty.classList.remove('hidden');
+                document.getElementById('promo-leads-table').classList.add('hidden');
+                return;
+            }
+            empty.classList.add('hidden');
+            document.getElementById('promo-leads-table').classList.remove('hidden');
+
+            // Show last 10
+            var recent = leads.slice(0, 10);
+            tbody.innerHTML = recent.map(function(s) {
+                var date = new Date(s.created_at);
+                var dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' +
+                              date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+
+                var statusColors = { 'new': 'bg-yellow-100 text-yellow-700', 'contacted': 'bg-blue-100 text-blue-700', 'closed': 'bg-gray-100 text-gray-600' };
+                var statusBadge = '<span class="' + (statusColors[s.status] || 'bg-gray-100 text-gray-600') + ' text-xs font-semibold px-2 py-0.5 rounded-full">' +
+                                  (s.status.charAt(0).toUpperCase() + s.status.slice(1)) + '</span>';
+
+                return '<tr class="border-b hover:bg-gray-50">' +
+                    '<td class="px-3 py-2 text-gray-500 whitespace-nowrap">' + dateStr + '</td>' +
+                    '<td class="px-3 py-2 font-semibold">' + s.name + '</td>' +
+                    '<td class="px-3 py-2">' + (s.email ? '<a href="mailto:' + s.email + '" class="text-secondary hover:underline">' + s.email + '</a>' : '-') + '</td>' +
+                    '<td class="px-3 py-2">' + statusBadge + '</td>' +
+                '</tr>';
+            }).join('');
+        }
+
+        // ==================== ALL LEADS SECTION ====================
+
+        function renderAllLeads(allLeads) {
+            // Stats
+            document.getElementById('lead-stat-total').textContent = allLeads.length;
+            document.getElementById('lead-stat-new').textContent = allLeads.filter(function(s) { return s.status === 'new'; }).length;
+            document.getElementById('lead-stat-rto').textContent = allLeads.filter(function(s) { return s.type === 'rto'; }).length;
+            document.getElementById('lead-stat-quote').textContent = allLeads.filter(function(s) { return s.type === 'quote'; }).length;
+            document.getElementById('lead-stat-purchase').textContent = allLeads.filter(function(s) { return s.type === 'purchase'; }).length;
+
+            var tbody = document.getElementById('all-leads-body');
+            var empty = document.getElementById('all-leads-empty');
+
+            if (allLeads.length === 0) {
+                tbody.innerHTML = '';
+                empty.classList.remove('hidden');
+                document.getElementById('all-leads-table').classList.add('hidden');
+                return;
+            }
+            empty.classList.add('hidden');
+            document.getElementById('all-leads-table').classList.remove('hidden');
+
+            var recent = allLeads.slice(0, 15);
+            var typeColors = { rto: 'bg-blue-100 text-blue-700', purchase: 'bg-purple-100 text-purple-700', quote: 'bg-green-100 text-green-700', promo: 'bg-orange-100 text-orange-700' };
+            var typeLabels = { rto: 'RTO', purchase: 'Purchase', quote: 'Quote', promo: 'Promo' };
+            var statusColors = { 'new': 'bg-yellow-100 text-yellow-700', 'contacted': 'bg-blue-100 text-blue-700', 'closed': 'bg-gray-100 text-gray-600' };
+
+            tbody.innerHTML = recent.map(function(s) {
+                var date = new Date(s.created_at);
+                var dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' +
+                              date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+
+                var typeBadge = '<span class="' + (typeColors[s.type] || 'bg-gray-100 text-gray-600') + ' text-xs font-semibold px-2 py-0.5 rounded-full">' + (typeLabels[s.type] || s.type) + '</span>';
+                var statusBadge = '<span class="' + (statusColors[s.status] || 'bg-gray-100 text-gray-600') + ' text-xs font-semibold px-2 py-0.5 rounded-full">' + (s.status.charAt(0).toUpperCase() + s.status.slice(1)) + '</span>';
+
+                var details = '-';
+                if (s.type === 'rto' || s.type === 'purchase') {
+                    details = s.shed_name ? s.shed_name : '-';
+                    if (s.shed_price) details += ' (' + s.shed_price + ')';
+                } else if (s.type === 'quote') {
+                    var parts = [];
+                    if (s.building_type) parts.push(s.building_type);
+                    if (s.building_size) parts.push(s.building_size);
+                    details = parts.length ? parts.join(' ') : '-';
+                } else if (s.type === 'promo') {
+                    details = 'Promo Signup';
+                }
+
+                var phone = s.phone && s.phone !== 'N/A' ? '<a href="tel:' + s.phone + '" class="text-secondary hover:underline">' + s.phone + '</a>' : '-';
+                var email = s.email ? '<a href="mailto:' + s.email + '" class="text-secondary hover:underline">' + s.email + '</a>' : '-';
+
+                return '<tr class="border-b hover:bg-gray-50">' +
+                    '<td class="px-3 py-2 text-gray-500 whitespace-nowrap">' + dateStr + '</td>' +
+                    '<td class="px-3 py-2">' + typeBadge + '</td>' +
+                    '<td class="px-3 py-2 font-semibold">' + s.name + '</td>' +
+                    '<td class="px-3 py-2">' + phone + '</td>' +
+                    '<td class="px-3 py-2">' + email + '</td>' +
+                    '<td class="px-3 py-2 text-gray-600">' + details + '</td>' +
+                    '<td class="px-3 py-2">' + statusBadge + '</td>' +
+                '</tr>';
+            }).join('');
+        }
+
+        // ==================== SHED SECTION ====================
 
         function loadSheds() {
             fetch('/api/admin/sheds')
@@ -189,7 +501,9 @@
                 .then(function() { loadSheds(); });
         }
 
+        // ==================== INIT ====================
         loadSheds();
+        loadPromo();
     </script>
 </body>
 </html>
