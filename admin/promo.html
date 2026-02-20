@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promo Popup - NFBS Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F172A',
+                        secondary: '#2563EB',
+                        accent: '#60A5FA',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Top Nav -->
+    <nav class="bg-primary text-white px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <a href="/admin/dashboard" class="text-gray-300 hover:text-white transition">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Back to Dashboard
+            </a>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="/" target="_blank" class="text-gray-300 hover:text-white text-sm transition">
+                <i class="fa-solid fa-external-link mr-1"></i> View Site
+            </a>
+            <a href="/admin/leads" class="text-gray-300 hover:text-white text-sm transition">
+                <i class="fa-solid fa-inbox mr-1"></i> Leads
+            </a>
+            <a href="/admin/settings" class="text-gray-300 hover:text-white text-sm transition">
+                <i class="fa-solid fa-gear mr-1"></i> Settings
+            </a>
+            <a href="/admin/logout" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-sm transition">
+                <i class="fa-solid fa-sign-out-alt mr-1"></i> Logout
+            </a>
+        </div>
+    </nav>
+
+    <div class="max-w-3xl mx-auto px-6 py-8">
+        <h2 class="text-2xl font-bold text-primary mb-6">Promo Popup Settings</h2>
+
+        <!-- Success Banner -->
+        <div id="success-banner" class="hidden bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg mb-4 text-sm">
+            <i class="fa-solid fa-check-circle mr-1"></i> <span id="success-msg"></span>
+        </div>
+
+        <!-- Error Banner -->
+        <div id="error-banner" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm"></div>
+
+        <!-- Configuration Form -->
+        <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+            <form id="promo-form" class="space-y-5">
+                <!-- Enable Toggle -->
+                <div class="flex items-center justify-between pb-4 border-b">
+                    <div>
+                        <h3 class="font-bold text-lg">Popup Enabled</h3>
+                        <p class="text-sm text-gray-500">Toggle the promo popup on or off for visitors</p>
+                    </div>
+                    <button type="button" id="enabled-toggle" onclick="toggleEnabled()" class="relative inline-flex h-7 w-12 items-center rounded-full transition bg-gray-300">
+                        <span id="enabled-dot" class="inline-block h-5 w-5 rounded-full bg-white transition transform translate-x-1"></span>
+                    </button>
+                    <input type="hidden" id="enabled" value="false">
+                </div>
+
+                <!-- Discount Text -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Discount Text</label>
+                    <input type="text" id="discount_text" placeholder="e.g. 10% OFF" maxlength="30"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none">
+                    <p class="text-xs text-gray-400 mt-1">Large bold text shown at the top of the popup</p>
+                </div>
+
+                <!-- Headline -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Headline</label>
+                    <input type="text" id="headline" placeholder="e.g. Limited Time Offer!" maxlength="80"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none">
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
+                    <textarea id="description" rows="2" placeholder="e.g. Sign up now and save on your next metal building order."
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none resize-none"></textarea>
+                </div>
+
+                <!-- Button Text -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Button Text</label>
+                    <input type="text" id="button_text" placeholder="Claim My Discount" maxlength="40"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none">
+                </div>
+
+                <!-- Color + Delay Row -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Accent Color</label>
+                        <div class="flex gap-2">
+                            <input type="color" id="bg_color_picker" value="#2563EB"
+                                class="h-12 w-14 rounded-lg border border-gray-300 cursor-pointer">
+                            <input type="text" id="bg_color" value="#2563EB" maxlength="7" placeholder="#2563EB"
+                                class="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none font-mono text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Delay (seconds)</label>
+                        <input type="number" id="delay_seconds" min="1" max="30" value="4"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none">
+                        <p class="text-xs text-gray-400 mt-1">How long before popup appears</p>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex gap-3 pt-2">
+                    <button type="submit" class="bg-secondary hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition flex-1">
+                        <i class="fa-solid fa-save mr-2"></i> Save Settings
+                    </button>
+                    <button type="button" onclick="resetDefaults()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold transition">
+                        Reset Defaults
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Live Preview -->
+        <div class="bg-white rounded-xl shadow-sm p-6">
+            <h3 class="font-bold text-lg mb-4">Live Preview</h3>
+            <div class="bg-gray-800 rounded-xl p-6 flex items-center justify-center min-h-[360px]">
+                <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden">
+                    <!-- Accent header -->
+                    <div id="preview-accent" class="py-5 px-6 text-center text-white" style="background-color: #2563EB;">
+                        <div id="preview-discount" class="text-3xl font-extrabold mb-1">10% OFF</div>
+                        <div class="text-sm opacity-90">Exclusive Online Offer</div>
+                    </div>
+                    <!-- Content -->
+                    <div class="px-6 py-5">
+                        <h3 id="preview-headline" class="text-xl font-bold text-gray-900 mb-2 text-center">Your Headline</h3>
+                        <p id="preview-description" class="text-gray-600 text-center mb-5 text-sm">Your description text...</p>
+                        <div class="space-y-2">
+                            <div class="w-full px-3 py-2.5 rounded-lg border border-gray-300 text-gray-400 text-sm">Your Name</div>
+                            <div class="w-full px-3 py-2.5 rounded-lg border border-gray-300 text-gray-400 text-sm">Your Email</div>
+                            <div id="preview-button" class="w-full text-white py-2.5 rounded-lg font-bold text-center text-sm" style="background-color: #2563EB;">Claim My Discount</div>
+                        </div>
+                        <p class="text-xs text-gray-400 text-center mt-3">No spam. Unsubscribe anytime.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var isEnabled = false;
+
+        // Toggle switch
+        function toggleEnabled() {
+            isEnabled = !isEnabled;
+            document.getElementById('enabled').value = isEnabled ? 'true' : 'false';
+            var toggle = document.getElementById('enabled-toggle');
+            var dot = document.getElementById('enabled-dot');
+            if (isEnabled) {
+                toggle.classList.remove('bg-gray-300');
+                toggle.classList.add('bg-green-500');
+                dot.classList.remove('translate-x-1');
+                dot.classList.add('translate-x-6');
+            } else {
+                toggle.classList.remove('bg-green-500');
+                toggle.classList.add('bg-gray-300');
+                dot.classList.remove('translate-x-6');
+                dot.classList.add('translate-x-1');
+            }
+        }
+
+        function setEnabled(val) {
+            if (val !== isEnabled) toggleEnabled();
+        }
+
+        // Color picker sync
+        document.getElementById('bg_color_picker').addEventListener('input', function() {
+            document.getElementById('bg_color').value = this.value;
+            updatePreview();
+        });
+        document.getElementById('bg_color').addEventListener('input', function() {
+            if (/^#[0-9a-fA-F]{6}$/.test(this.value)) {
+                document.getElementById('bg_color_picker').value = this.value;
+            }
+            updatePreview();
+        });
+
+        // Real-time preview
+        ['headline', 'description', 'discount_text', 'button_text', 'bg_color'].forEach(function(id) {
+            document.getElementById(id).addEventListener('input', updatePreview);
+        });
+
+        function updatePreview() {
+            var color = document.getElementById('bg_color').value;
+            document.getElementById('preview-discount').textContent = document.getElementById('discount_text').value || '10% OFF';
+            document.getElementById('preview-headline').textContent = document.getElementById('headline').value || 'Your Headline';
+            document.getElementById('preview-description').textContent = document.getElementById('description').value || 'Your description text...';
+            document.getElementById('preview-button').textContent = document.getElementById('button_text').value || 'Claim My Discount';
+            document.getElementById('preview-accent').style.backgroundColor = color;
+            document.getElementById('preview-button').style.backgroundColor = color;
+        }
+
+        // Load existing config
+        fetch('/api/admin/promo')
+            .then(function(r) {
+                if (r.status === 401) { window.location.href = '/admin/login'; return null; }
+                return r.json();
+            })
+            .then(function(data) {
+                if (!data) return;
+                setEnabled(!!data.enabled);
+                document.getElementById('headline').value = data.headline || '';
+                document.getElementById('description').value = data.description || '';
+                document.getElementById('discount_text').value = data.discount_text || '';
+                document.getElementById('button_text').value = data.button_text || 'Claim My Discount';
+                document.getElementById('bg_color').value = data.bg_color || '#2563EB';
+                document.getElementById('bg_color_picker').value = data.bg_color || '#2563EB';
+                document.getElementById('delay_seconds').value = data.delay_seconds || 4;
+                updatePreview();
+            });
+
+        // Save
+        document.getElementById('promo-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            hideMessages();
+            var btn = this.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Saving...';
+
+            fetch('/api/admin/promo', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    enabled: document.getElementById('enabled').value === 'true',
+                    headline: document.getElementById('headline').value,
+                    description: document.getElementById('description').value,
+                    discount_text: document.getElementById('discount_text').value,
+                    button_text: document.getElementById('button_text').value,
+                    bg_color: document.getElementById('bg_color').value,
+                    delay_seconds: document.getElementById('delay_seconds').value
+                })
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (data.error) {
+                    showError(data.error);
+                } else {
+                    showSuccess('Promo popup settings saved.');
+                }
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-save mr-2"></i> Save Settings';
+            })
+            .catch(function() {
+                showError('Something went wrong. Please try again.');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-save mr-2"></i> Save Settings';
+            });
+        });
+
+        // Reset defaults
+        function resetDefaults() {
+            setEnabled(false);
+            document.getElementById('headline').value = 'Limited Time Offer!';
+            document.getElementById('description').value = 'Sign up now and save on your next metal building order.';
+            document.getElementById('discount_text').value = '10% OFF';
+            document.getElementById('button_text').value = 'Claim My Discount';
+            document.getElementById('bg_color').value = '#2563EB';
+            document.getElementById('bg_color_picker').value = '#2563EB';
+            document.getElementById('delay_seconds').value = 4;
+            updatePreview();
+        }
+
+        function showError(msg) {
+            document.getElementById('error-banner').textContent = msg;
+            document.getElementById('error-banner').classList.remove('hidden');
+        }
+        function showSuccess(msg) {
+            document.getElementById('success-msg').textContent = msg;
+            document.getElementById('success-banner').classList.remove('hidden');
+        }
+        function hideMessages() {
+            document.getElementById('error-banner').classList.add('hidden');
+            document.getElementById('success-banner').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

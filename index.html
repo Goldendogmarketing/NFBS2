@@ -654,5 +654,126 @@
             });
         });
     </script>
+
+    <!-- Promo Popup Overlay -->
+    <div id="promo-overlay" class="fixed inset-0 bg-black/60 z-[300] items-center justify-center p-4" style="display:none;">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full relative overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="promo-modal">
+            <button onclick="closePromo()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-xl z-10 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="promo-accent" class="py-6 px-8 text-center text-white">
+                <div id="promo-discount" class="text-4xl md:text-5xl font-extrabold mb-1"></div>
+                <div class="text-sm opacity-90">Exclusive Online Offer</div>
+            </div>
+            <div class="px-8 py-6" id="promo-content">
+                <h3 id="promo-headline" class="text-2xl font-bold text-gray-900 mb-2 text-center"></h3>
+                <p id="promo-description" class="text-gray-600 text-center mb-6 text-sm"></p>
+                <form id="promo-form" class="space-y-3">
+                    <input type="text" name="_honey" style="display:none">
+                    <input type="text" name="promo_name" required placeholder="Your Name"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+                    <input type="email" name="promo_email" required placeholder="Your Email"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+                    <button type="submit" id="promo-btn" class="w-full text-white py-3 rounded-lg font-bold text-lg transition transform hover:scale-[1.02] shadow-lg"></button>
+                </form>
+                <p class="text-xs text-gray-400 text-center mt-3">No spam. Unsubscribe anytime.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Promo Popup ---
+        (function() {
+            if (localStorage.getItem('nfbs_promo_dismissed')) return;
+
+            fetch('/api/promo')
+                .then(function(r) { return r.json(); })
+                .then(function(promo) {
+                    if (!promo || !promo.enabled) return;
+
+                    document.getElementById('promo-discount').textContent = promo.discount_text;
+                    document.getElementById('promo-headline').textContent = promo.headline;
+                    document.getElementById('promo-description').textContent = promo.description;
+                    document.getElementById('promo-btn').textContent = promo.button_text;
+                    document.getElementById('promo-accent').style.backgroundColor = promo.bg_color;
+                    document.getElementById('promo-btn').style.backgroundColor = promo.bg_color;
+
+                    var delaySec = (promo.delay_seconds || 4) * 1000;
+                    setTimeout(function() {
+                        var overlay = document.getElementById('promo-overlay');
+                        overlay.style.display = 'flex';
+                        setTimeout(function() {
+                            document.getElementById('promo-modal').style.transform = 'scale(1)';
+                            document.getElementById('promo-modal').style.opacity = '1';
+                        }, 50);
+                    }, delaySec);
+                })
+                .catch(function() {});
+        })();
+
+        function closePromo() {
+            var modal = document.getElementById('promo-modal');
+            modal.style.transform = 'scale(0.95)';
+            modal.style.opacity = '0';
+            setTimeout(function() {
+                document.getElementById('promo-overlay').style.display = 'none';
+            }, 300);
+            localStorage.setItem('nfbs_promo_dismissed', '1');
+        }
+
+        document.getElementById('promo-overlay').addEventListener('click', function(e) {
+            if (e.target === this) closePromo();
+        });
+
+        document.getElementById('promo-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var form = this;
+            var btn = document.getElementById('promo-btn');
+            var origText = btn.textContent;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Submitting...';
+
+            if (form.querySelector('[name="_honey"]').value) {
+                closePromo();
+                return;
+            }
+
+            var data = {
+                type: 'promo',
+                name: form.querySelector('[name="promo_name"]').value,
+                phone: 'N/A',
+                email: form.querySelector('[name="promo_email"]').value,
+                notes: 'Signed up via promo popup'
+            };
+
+            fetch('/api/submissions', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(result) {
+                if (result.success) {
+                    document.getElementById('promo-content').innerHTML =
+                        '<div class="text-center py-4">' +
+                        '<i class="fa-solid fa-check-circle text-green-500 text-5xl mb-4"></i>' +
+                        '<h3 class="text-xl font-bold text-gray-900 mb-2">You\'re In!</h3>' +
+                        '<p class="text-gray-600 text-sm">Check your email for your exclusive discount.</p>' +
+                        '</div>';
+                    localStorage.setItem('nfbs_promo_dismissed', '1');
+                    setTimeout(closePromo, 3000);
+                } else {
+                    btn.disabled = false;
+                    btn.textContent = origText;
+                    alert('Something went wrong. Please try again.');
+                }
+            })
+            .catch(function() {
+                btn.disabled = false;
+                btn.textContent = origText;
+                alert('Something went wrong. Please try again.');
+            });
+        });
+    </script>
 </body>
 </html>

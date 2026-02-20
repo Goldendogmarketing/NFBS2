@@ -15,11 +15,14 @@ module.exports = async function handler(req, res) {
     try {
       const body = req.body;
 
-      if (!body.name || !body.phone || !body.type) {
-        return res.status(400).json({ error: 'Name, phone, and type are required.' });
+      if (!body.name || !body.type) {
+        return res.status(400).json({ error: 'Name and type are required.' });
       }
-      if (!['rto', 'purchase', 'quote'].includes(body.type)) {
+      if (!['rto', 'purchase', 'quote', 'promo'].includes(body.type)) {
         return res.status(400).json({ error: 'Invalid submission type.' });
+      }
+      if (['rto', 'purchase', 'quote'].includes(body.type) && !body.phone) {
+        return res.status(400).json({ error: 'Phone is required for this submission type.' });
       }
 
       // Honeypot spam check
@@ -46,7 +49,8 @@ module.exports = async function handler(req, res) {
       var subjectMap = {
         rto: 'New Shed Rent-To-Own Application',
         purchase: 'New Shed Purchase Inquiry',
-        quote: 'New Quote Request'
+        quote: 'New Quote Request',
+        promo: 'New Promo Signup'
       };
 
       var emailPayload = {
@@ -66,6 +70,9 @@ module.exports = async function handler(req, res) {
       if (body.type === 'quote') {
         emailPayload['Building Type'] = body.building_type || '';
         emailPayload['Approximate Size'] = body.building_size || '';
+      }
+      if (body.type === 'promo') {
+        emailPayload['Source'] = 'Landing Page Popup';
       }
       if (body.notes) {
         emailPayload['Notes'] = body.notes;
