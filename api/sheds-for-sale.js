@@ -1,4 +1,4 @@
-const { getAllSheds } = require('./lib/kv');
+const { getAllSheds } = require('../lib/kv');
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'GET') {

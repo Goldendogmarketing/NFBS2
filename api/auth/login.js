@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
-const { getAdminUser } = require('../lib/kv');
-const { createToken, setAuthCookie } = require('../lib/auth');
+const { getAdminUser } = require('../../lib/kv');
+const { createToken, setAuthCookie } = require('../../lib/auth');
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {

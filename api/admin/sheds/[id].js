@@ -1,5 +1,5 @@
-const { verifyAuth } = require('../../lib/auth');
-const { getShedById, updateShed, deleteShed } = require('../../lib/kv');
+const { verifyAuth } = require('../../../lib/auth');
+const { getShedById, updateShed, deleteShed } = require('../../../lib/kv');
 
 module.exports = async function handler(req, res) {
   const user = verifyAuth(req);

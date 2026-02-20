@@ -111,10 +111,10 @@
             var newUsername = document.getElementById('new-username').value.trim();
             if (!newUsername) return;
 
-            fetch('/api/admin/account/username', {
+            fetch('/api/admin/account', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username: newUsername })
+                body: JSON.stringify({ action: 'username', username: newUsername })
             })
             .then(function(r) { return r.json(); })
             .then(function(data) {
@@ -141,10 +141,10 @@
                 return;
             }
 
-            fetch('/api/admin/account/password', {
+            fetch('/api/admin/account', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ currentPassword: currentPw, newPassword: newPw })
+                body: JSON.stringify({ action: 'password', currentPassword: currentPw, newPassword: newPw })
             })
             .then(function(r) { return r.json(); })
             .then(function(data) {

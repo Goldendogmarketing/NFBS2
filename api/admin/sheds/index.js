@@ -1,5 +1,5 @@
-const { verifyAuth } = require('../../lib/auth');
-const { getAllSheds, createShed } = require('../../lib/kv');
+const { verifyAuth } = require('../../../lib/auth');
+const { getAllSheds, createShed } = require('../../../lib/kv');
 
 module.exports = async function handler(req, res) {
   const user = verifyAuth(req);

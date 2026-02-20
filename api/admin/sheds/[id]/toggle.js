@@ -1,5 +1,5 @@
-const { verifyAuth } = require('../../../lib/auth');
-const { toggleShed } = require('../../../lib/kv');
+const { verifyAuth } = require('../../../../lib/auth');
+const { toggleShed } = require('../../../../lib/kv');
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'PATCH') {
