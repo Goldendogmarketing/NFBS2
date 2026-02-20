@@ -1,49 +1,38 @@
 const { verifyAuth } = require('../lib/auth');
-const { getAllSubmissions, createSubmission, getPromoPopup, getAdminUser } = require('../lib/kv');
+const { getAllSubmissions, createSubmission, getPromoPopup } = require('../lib/kv');
 
 module.exports = async function handler(req, res) {
-  // --- Debug: test login flow (temporary) ---
-  if (req.method === 'GET' && req.query.debug === 'login') {
-    try {
-      var bcrypt = require('bcryptjs');
-      var user = await getAdminUser();
-      var result = {
-        v: 3,
-        userType: typeof user,
-        hasUser: !!user,
-        username: user ? user.username : null,
-        hashStart: user && user.password_hash ? user.password_hash.substring(0, 10) : null,
-        match: user && user.password_hash ? bcrypt.compareSync('Franklin22!', user.password_hash) : false
-      };
-      return res.json(result);
-    } catch (e) {
-      return res.json({ error: e.message });
-    }
-  }
-
   // --- Public GET: promo popup config (no auth) ---
   if (req.method === 'GET' && req.query.promo === '1') {
-    const promo = await getPromoPopup();
-    if (!promo || !promo.enabled) {
+    try {
+      const promo = await getPromoPopup();
+      if (!promo || !promo.enabled) {
+        return res.json({ enabled: false });
+      }
+      return res.json({
+        enabled: true,
+        headline: promo.headline,
+        description: promo.description,
+        discount_text: promo.discount_text,
+        button_text: promo.button_text,
+        bg_color: promo.bg_color,
+        delay_seconds: promo.delay_seconds || 4
+      });
+    } catch (err) {
       return res.json({ enabled: false });
     }
-    return res.json({
-      enabled: true,
-      headline: promo.headline,
-      description: promo.description,
-      discount_text: promo.discount_text,
-      button_text: promo.button_text,
-      bg_color: promo.bg_color,
-      delay_seconds: promo.delay_seconds || 4
-    });
   }
 
   // --- Admin GET: list all submissions (auth required) ---
   if (req.method === 'GET') {
     const user = verifyAuth(req);
     if (!user) return res.status(401).json({ error: 'Not authenticated' });
-    const submissions = await getAllSubmissions();
-    return res.json(submissions);
+    try {
+      const submissions = await getAllSubmissions();
+      return res.json(submissions);
+    } catch (err) {
+      return res.status(500).json({ error: 'Failed to load submissions.' });
+    }
   }
 
   // --- Public POST: new form submission ---
@@ -70,7 +59,7 @@ module.exports = async function handler(req, res) {
       const submission = await createSubmission({
         type: body.type,
         name: body.name,
-        phone: body.phone,
+        phone: body.phone || '',
         email: body.email || '',
         zip: body.zip || '',
         shed_name: body.shed_name || null,
@@ -91,7 +80,7 @@ module.exports = async function handler(req, res) {
 
       var emailPayload = {
         Name: body.name,
-        Phone: body.phone,
+        Phone: body.phone || 'N/A',
         Email: body.email || 'Not provided',
         'ZIP Code': body.zip || '',
         _subject: subjectMap[body.type],
