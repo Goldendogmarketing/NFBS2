@@ -23,10 +23,7 @@ module.exports = async function handler(req, res) {
     }
     try {
       const hash = bcrypt.hashSync(password, 10);
-      await redis.set('admin_user', JSON.stringify({
-        username: username,
-        password_hash: hash
-      }));
+      await redis.set('admin_user', { username: username, password_hash: hash });
       return res.json({ success: true, message: 'Admin credentials updated.' });
     } catch (err) {
       return res.status(500).json({ error: 'Reset failed: ' + err.message });
@@ -121,10 +118,7 @@ module.exports = async function handler(req, res) {
 
     // Create default admin user
     const hash = bcrypt.hashSync('changeme', 10);
-    await redis.set('admin_user', JSON.stringify({
-      username: 'admin',
-      password_hash: hash
-    }));
+    await redis.set('admin_user', { username: 'admin', password_hash: hash });
 
     res.json({
       success: true,
