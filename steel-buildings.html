@@ -527,6 +527,27 @@
                                 </div>
                                 <hr>
                                 <p class="text-xs text-gray-400">Final price depends on site conditions, color choices, and local requirements. We'll confirm all details quickly after you submit.</p>
+                                <!-- Pay Now deposit section (hidden until form submitted) -->
+                                <div id="sidebar-deposit" class="hidden">
+                                    <hr>
+                                    <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-center">
+                                        <div class="text-xs uppercase tracking-wide text-green-700 font-semibold mb-1">Start Your Order Today</div>
+                                        <div class="text-2xl font-extrabold text-primary" id="sidebar-deposit-amount">$0</div>
+                                        <div class="text-xs text-gray-500 mb-3" id="sidebar-deposit-label">deposit to lock in your price</div>
+                                        <button type="button" id="deposit-btn" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-bold text-base shadow-lg transition transform hover:scale-[1.02]">
+                                            <i class="fa-solid fa-lock mr-2"></i>Pay Now — <span id="deposit-btn-amount">$0</span> Deposit
+                                        </button>
+                                        <div class="flex items-center justify-center gap-2 mt-2">
+                                            <i class="fa-solid fa-shield-halved text-gray-400 text-xs"></i>
+                                            <span class="text-xs text-gray-400">Secure checkout via Stripe</span>
+                                        </div>
+                                    </div>
+                                    <ul class="text-xs text-gray-500 space-y-1 mt-3">
+                                        <li><i class="fa-solid fa-check text-green-500 mr-1"></i>Locks in today's pricing</li>
+                                        <li><i class="fa-solid fa-check text-green-500 mr-1"></i>Priority build queue</li>
+                                        <li><i class="fa-solid fa-check text-green-500 mr-1"></i>Balance due at installation</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <!-- Quick CTA under price summary -->
@@ -547,6 +568,30 @@
                 <h3 class="text-2xl font-bold text-green-800 mb-2">Price Request Submitted!</h3>
                 <p class="text-green-700 mb-4">We'll call or text you within 1 business hour to confirm your price and answer any questions.</p>
                 <p class="text-sm text-gray-500">Your estimate: <strong id="success-estimate"></strong></p>
+                <p class="text-green-700 mt-3 font-semibold"><i class="fa-solid fa-arrow-right mr-1"></i>Pay your deposit in the price summary to start your order now.</p>
+            </div>
+
+            <!-- Payment Success (shown when returning from Stripe) -->
+            <div id="payment-success" class="hidden mt-8 bg-blue-50 border-2 border-blue-500 rounded-2xl p-8 text-center fade-in">
+                <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa-solid fa-credit-card text-3xl text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-blue-800 mb-2">Deposit Paid Successfully!</h3>
+                <p class="text-blue-700 mb-4">Your order is confirmed. We'll call you within 1 business hour to go over the final details and schedule your installation.</p>
+                <p class="text-sm text-gray-500">A confirmation email has been sent. Thank you for choosing North Florida Building Solutions!</p>
+                <div class="mt-6">
+                    <a href="tel:+19044952325" class="text-secondary font-semibold hover:underline"><i class="fa-solid fa-phone mr-1"></i>(904) 495-2325</a>
+                </div>
+            </div>
+
+            <!-- Payment Cancelled (shown when user backs out of Stripe) -->
+            <div id="payment-cancelled" class="hidden mt-8 bg-yellow-50 border-2 border-yellow-500 rounded-2xl p-8 text-center fade-in">
+                <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa-solid fa-arrow-rotate-left text-3xl text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-yellow-800 mb-2">Payment Not Completed</h3>
+                <p class="text-yellow-700 mb-4">No worries! Your price request is still saved. You can pay the deposit anytime, or we'll reach out to you shortly.</p>
+                <a href="tel:+19044952325" class="text-secondary font-semibold hover:underline"><i class="fa-solid fa-phone mr-1"></i>Call us: (904) 495-2325</a>
             </div>
         </div>
     </section>
@@ -1547,9 +1592,23 @@
                 .then(function(res) { return res.json(); })
                 .then(function(data) {
                     if (data.success) {
+                        // Store for deposit flow
+                        window._leadId = data.lead_id;
+                        window._estimateResult = result;
+
                         document.getElementById('cfg-success').classList.remove('hidden');
                         document.getElementById('success-estimate').textContent = formatPrice(result.low) + ' \u2013 ' + formatPrice(result.high);
                         document.getElementById('lead-capture').style.display = 'none';
+
+                        // Calculate and display deposit in sidebar
+                        var depositPercent = result.low < 4000 ? 0.11 : 0.16;
+                        var depositAmount = Math.round(result.low * depositPercent);
+                        document.getElementById('sidebar-deposit-amount').textContent = formatPrice(depositAmount);
+                        document.getElementById('deposit-btn-amount').textContent = formatPrice(depositAmount);
+                        document.getElementById('sidebar-deposit-label').textContent =
+                            (depositPercent * 100) + '% deposit — locks in your price';
+                        document.getElementById('sidebar-deposit').classList.remove('hidden');
+
                         document.getElementById('cfg-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
                     } else {
                         showError(errorEl, data.error || 'Something went wrong. Please try again.');
@@ -1626,6 +1685,73 @@
                 el.classList.remove('hidden');
             }
         }
+
+        // ─── Deposit Button Handler ─────────────────────────────
+        var depositBtn = document.getElementById('deposit-btn');
+        if (depositBtn) {
+            depositBtn.addEventListener('click', function() {
+                if (!window._leadId) return;
+
+                var btnAmountText = document.getElementById('deposit-btn-amount').textContent;
+                depositBtn.disabled = true;
+                depositBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Redirecting to checkout...';
+
+                track('deposit_click', {
+                    lead_id: window._leadId,
+                    estimate_low: window._estimateResult ? window._estimateResult.low : 0
+                });
+
+                fetch('/api/create-checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ lead_id: window._leadId })
+                })
+                .then(function(res) { return res.json(); })
+                .then(function(data) {
+                    if (data.url) {
+                        window.location.href = data.url;
+                    } else {
+                        depositBtn.disabled = false;
+                        depositBtn.innerHTML = '<i class="fa-solid fa-lock mr-2"></i>Pay Now — ' + btnAmountText + ' Deposit';
+                        showError(document.getElementById('cfg-error'), data.error || 'Something went wrong. Please try again or call us.');
+                    }
+                })
+                .catch(function() {
+                    depositBtn.disabled = false;
+                    depositBtn.innerHTML = '<i class="fa-solid fa-lock mr-2"></i>Pay Now — ' + btnAmountText + ' Deposit';
+                    showError(document.getElementById('cfg-error'), 'Network error. Please try again or call us.');
+                });
+            });
+        }
+
+        // ─── Check URL params for Stripe redirect-back ──────────
+        (function checkPaymentStatus() {
+            var params = new URLSearchParams(window.location.search);
+
+            if (params.get('payment') === 'success') {
+                var paymentEl = document.getElementById('payment-success');
+                if (paymentEl) {
+                    paymentEl.classList.remove('hidden');
+                    setTimeout(function() {
+                        paymentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 100);
+                }
+                window.history.replaceState({}, '', window.location.pathname);
+                track('deposit_payment_success', { session_id: params.get('session_id') || '' });
+            }
+
+            if (params.get('payment') === 'cancelled') {
+                var cancelledEl = document.getElementById('payment-cancelled');
+                if (cancelledEl) {
+                    cancelledEl.classList.remove('hidden');
+                    setTimeout(function() {
+                        cancelledEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 100);
+                }
+                window.history.replaceState({}, '', window.location.pathname);
+                track('deposit_payment_cancelled', {});
+            }
+        })();
 
     })();
     </script>
