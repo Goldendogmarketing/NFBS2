@@ -62,7 +62,7 @@ function generateNav(depth = 0) {
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="${prefix}index.html" class="flex items-center gap-3">
-                <img src="${prefix}logo.avif" alt="${business.name}" class="h-12 w-auto">
+                <img src="${prefix}logo.png" alt="${business.name}" class="h-12 w-auto">
             </a>
             <div class="hidden lg:flex items-center space-x-8">
                 <a href="${prefix}sheds-for-sale.html" class="bg-secondary hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition shadow-lg">
@@ -99,7 +99,7 @@ function generateFooter(depth = 0) {
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <img src="${prefix}logo.avif" alt="${business.name}" class="h-12 w-auto mb-4 brightness-0 invert">
+                    <img src="${prefix}logo.png" alt="${business.name}" class="h-12 w-auto mb-4 brightness-0 invert">
                     <p class="text-sm">Quality metal buildings at affordable prices. Serving North Florida for over 20 years.</p>
                 </div>
                 <div>
@@ -127,7 +127,7 @@ function generateFooter(depth = 0) {
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <img src="${prefix}logo.avif" alt="${business.name}" class="w-[150px] h-[150px] object-contain brightness-0 invert">
+                <img src="${prefix}logo.png" alt="${business.name}" class="w-[150px] h-[150px] object-contain brightness-0 invert">
                 <p class="text-sm">&copy; ${new Date().getFullYear()} ${business.name}. All rights reserved.</p>
             </div>
         </div>
