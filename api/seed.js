@@ -113,7 +113,7 @@ module.exports = async function handler(req, res) {
     }
 
     // Save to KV
-    await redis.set('sheds', JSON.stringify(sheds));
+    await redis.set('sheds', sheds);
     await redis.set('next_shed_id', id);
 
     // Create default admin user

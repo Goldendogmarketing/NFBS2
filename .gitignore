@@ -4,3 +4,4 @@ cms/data/*.db
 cms/data/*.db-shm
 cms/data/*.db-wal
 .vercel
+.env*.local
