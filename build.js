@@ -62,7 +62,7 @@ function generateNav(depth = 0) {
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="${prefix}index.html" class="flex items-center gap-3">
-                <img src="${prefix}logo.png" alt="${business.name}" class="h-12 w-auto">
+                <img src="${prefix}logo.png" alt="${business.name}" class="h-20 w-auto">
             </a>
             <div class="hidden lg:flex items-center space-x-8">
                 <a href="${prefix}sheds-for-sale.html" class="bg-secondary hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition shadow-lg">
