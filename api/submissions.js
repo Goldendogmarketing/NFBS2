@@ -1,5 +1,6 @@
 const { verifyAuth } = require('../lib/auth');
 const { getAllSubmissions, createSubmission, getPromoPopup } = require('../lib/kv');
+const { encrypt } = require('../lib/crypto');
 
 module.exports = async function handler(req, res) {
   // --- Public GET: promo popup config (no auth) ---
@@ -55,8 +56,8 @@ module.exports = async function handler(req, res) {
         return res.json({ success: true });
       }
 
-      // Save to Redis
-      const submission = await createSubmission({
+      // Build submission data
+      var submissionData = {
         type: body.type,
         name: body.name,
         phone: body.phone || '',
@@ -68,7 +69,20 @@ module.exports = async function handler(req, res) {
         building_type: body.building_type || null,
         building_size: body.building_size || null,
         notes: body.notes || ''
-      });
+      };
+
+      // RTO-specific fields
+      if (body.type === 'rto') {
+        submissionData.first_name = body.first_name || '';
+        submissionData.middle_name = body.middle_name || '';
+        submissionData.last_name = body.last_name || '';
+        submissionData.dob = body.dob || '';
+        submissionData.ssn_encrypted = body.ssn ? encrypt(body.ssn) : '';
+        submissionData.dl_encrypted = body.drivers_license ? encrypt(body.drivers_license) : '';
+      }
+
+      // Save to Redis
+      const submission = await createSubmission(submissionData);
 
       // Forward to FormSubmit.co for email notification (fire-and-forget)
       var subjectMap = {
@@ -87,9 +101,18 @@ module.exports = async function handler(req, res) {
         _template: 'table'
       };
 
-      if (body.type === 'rto' || body.type === 'purchase') {
+      if (body.type === 'rto') {
+        emailPayload['Full Name'] = (body.first_name || '') + ' ' + (body.middle_name ? body.middle_name + ' ' : '') + (body.last_name || '');
+        emailPayload['Date of Birth'] = body.dob || '';
+        emailPayload['SSN'] = body.ssn ? '***-**-' + body.ssn.slice(-4) : '';
+        emailPayload["Driver's License"] = body.drivers_license ? '****' + body.drivers_license.slice(-4) : '';
         emailPayload['Selected Shed'] = body.shed_name || '';
-        emailPayload[body.type === 'rto' ? 'Monthly Payment' : 'Sale Price'] = body.shed_price || '';
+        emailPayload['Monthly Payment'] = body.shed_price || '';
+        emailPayload['Delivery Address'] = body.address || '';
+      }
+      if (body.type === 'purchase') {
+        emailPayload['Selected Shed'] = body.shed_name || '';
+        emailPayload['Sale Price'] = body.shed_price || '';
         emailPayload['Delivery Address'] = body.address || '';
       }
       if (body.type === 'quote') {

@@ -110,6 +110,119 @@
         </div>
     </div>
 
+    <!-- RTO Application Detail Modal -->
+    <div id="rto-modal" class="fixed inset-0 z-[100] hidden overflow-y-auto">
+        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm" onclick="closeRtoModal()"></div>
+        <div class="relative z-10 flex items-start justify-center min-h-screen p-4 pt-8 md:pt-16">
+            <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl relative">
+                <button onclick="closeRtoModal()" class="absolute top-4 right-4 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-700 transition z-20">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+                <div class="p-6 md:p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">RTO Application</span>
+                        <span id="rto-modal-date" class="text-sm text-gray-400"></span>
+                    </div>
+
+                    <div id="rto-modal-loading" class="text-center py-8">
+                        <i class="fa-solid fa-spinner fa-spin text-2xl text-gray-400"></i>
+                        <p class="text-gray-400 mt-2">Loading application...</p>
+                    </div>
+
+                    <div id="rto-modal-content" class="hidden space-y-6">
+                        <!-- Personal Info -->
+                        <div>
+                            <h4 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">Personal Information</h4>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div>
+                                    <p class="text-xs text-gray-400">First Name</p>
+                                    <p class="font-semibold" id="rto-first-name">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">Middle Name</p>
+                                    <p class="font-semibold" id="rto-middle-name">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">Last Name</p>
+                                    <p class="font-semibold" id="rto-last-name">-</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sensitive Info -->
+                        <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+                            <h4 class="text-sm font-bold text-red-600 uppercase tracking-wide mb-3"><i class="fa-solid fa-shield-halved mr-1"></i> Sensitive Information</h4>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div>
+                                    <p class="text-xs text-gray-400">Date of Birth</p>
+                                    <p class="font-semibold" id="rto-dob">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">Social Security #</p>
+                                    <div class="flex items-center gap-2">
+                                        <p class="font-semibold font-mono" id="rto-ssn">-</p>
+                                        <button onclick="copyField('rto-ssn')" class="text-gray-400 hover:text-secondary transition text-xs" title="Copy"><i class="fa-solid fa-copy"></i></button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">Driver's License #</p>
+                                    <div class="flex items-center gap-2">
+                                        <p class="font-semibold font-mono" id="rto-dl">-</p>
+                                        <button onclick="copyField('rto-dl')" class="text-gray-400 hover:text-secondary transition text-xs" title="Copy"><i class="fa-solid fa-copy"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div>
+                            <h4 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">Contact Information</h4>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <p class="text-xs text-gray-400">Phone</p>
+                                    <p class="font-semibold"><a id="rto-phone" href="#" class="text-secondary hover:underline">-</a></p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">Email</p>
+                                    <p class="font-semibold"><a id="rto-email" href="#" class="text-secondary hover:underline">-</a></p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">ZIP Code</p>
+                                    <p class="font-semibold" id="rto-zip">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">Delivery Address</p>
+                                    <p class="font-semibold" id="rto-address">-</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shed Details -->
+                        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+                            <h4 class="text-sm font-bold text-blue-700 uppercase tracking-wide mb-3"><i class="fa-solid fa-warehouse mr-1"></i> Shed Details</h4>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <p class="text-xs text-gray-400">Selected Shed</p>
+                                    <p class="font-semibold" id="rto-shed-name">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">Monthly Payment</p>
+                                    <p class="font-semibold text-secondary" id="rto-shed-price">-</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notes -->
+                        <div id="rto-notes-section" class="hidden">
+                            <h4 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-2">Notes</h4>
+                            <p class="text-gray-600 text-sm italic" id="rto-notes"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         var allSubmissions = [];
         var filterType = '';
@@ -235,7 +348,10 @@
                     '<td class="px-4 py-3 text-sm">' + getDetails(s) + extra + '</td>' +
                     '<td class="px-4 py-3">' + statusSelect(s.id, s.status) + '</td>' +
                     '<td class="px-4 py-3">' +
+                        '<div class="flex gap-2">' +
+                        (s.type === 'rto' ? '<button onclick="viewRtoApplication(' + s.id + ')" class="text-secondary hover:text-blue-700 transition" title="View Application"><i class="fa-solid fa-eye"></i></button>' : '') +
                         '<button onclick="deleteLead(' + s.id + ', \'' + s.name.replace(/'/g, "\\'") + '\')" class="text-red-400 hover:text-red-600 transition" title="Delete"><i class="fa-solid fa-trash"></i></button>' +
+                        '</div>' +
                     '</td>' +
                 '</tr>';
             }).join('');
@@ -254,6 +370,68 @@
             fetch('/api/admin/submissions/' + id, { method: 'DELETE' })
                 .then(function() { loadSubmissions(); });
         }
+
+        function viewRtoApplication(id) {
+            document.getElementById('rto-modal').classList.remove('hidden');
+            document.getElementById('rto-modal-loading').classList.remove('hidden');
+            document.getElementById('rto-modal-content').classList.add('hidden');
+            document.body.style.overflow = 'hidden';
+
+            fetch('/api/admin/submissions/' + id)
+                .then(function(r) {
+                    if (r.status === 401) { window.location.href = '/admin/login'; return null; }
+                    return r.json();
+                })
+                .then(function(s) {
+                    if (!s) return;
+                    document.getElementById('rto-modal-loading').classList.add('hidden');
+                    document.getElementById('rto-modal-content').classList.remove('hidden');
+
+                    document.getElementById('rto-modal-date').textContent = s.created_at ? formatDate(s.created_at) : '';
+                    document.getElementById('rto-first-name').textContent = s.first_name || s.name || '-';
+                    document.getElementById('rto-middle-name').textContent = s.middle_name || '-';
+                    document.getElementById('rto-last-name').textContent = s.last_name || '-';
+                    document.getElementById('rto-dob').textContent = s.dob || '-';
+                    document.getElementById('rto-ssn').textContent = s.ssn || '-';
+                    document.getElementById('rto-dl').textContent = s.drivers_license || '-';
+
+                    var phoneEl = document.getElementById('rto-phone');
+                    phoneEl.textContent = s.phone || '-';
+                    phoneEl.href = s.phone ? 'tel:' + s.phone : '#';
+
+                    var emailEl = document.getElementById('rto-email');
+                    emailEl.textContent = s.email || '-';
+                    emailEl.href = s.email ? 'mailto:' + s.email : '#';
+
+                    document.getElementById('rto-zip').textContent = s.zip || '-';
+                    document.getElementById('rto-address').textContent = s.address || '-';
+                    document.getElementById('rto-shed-name').textContent = s.shed_name || '-';
+                    document.getElementById('rto-shed-price').textContent = s.shed_price || '-';
+
+                    if (s.notes) {
+                        document.getElementById('rto-notes-section').classList.remove('hidden');
+                        document.getElementById('rto-notes').textContent = s.notes;
+                    } else {
+                        document.getElementById('rto-notes-section').classList.add('hidden');
+                    }
+                });
+        }
+
+        function closeRtoModal() {
+            document.getElementById('rto-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function copyField(elementId) {
+            var text = document.getElementById(elementId).textContent;
+            if (text && text !== '-') {
+                navigator.clipboard.writeText(text);
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeRtoModal();
+        });
 
         loadSubmissions();
     </script>
