@@ -104,7 +104,7 @@ module.exports = async function handler(req, res) {
       }
 
       try {
-        await fetch('https://formsubmit.co/ajax/info@nflbuildingsolutions.com', {
+        await fetch('https://formsubmit.co/ajax/josh@northfloridabuildingsolutions.com', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(emailPayload)
