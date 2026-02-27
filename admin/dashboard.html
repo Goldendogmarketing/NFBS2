@@ -463,9 +463,9 @@
                 if (shed.list_buy) badges += '<span class="bg-purple-100 text-purple-700 text-xs font-semibold px-2 py-0.5 rounded-full">Buy Now</span>';
                 if (!badges) badges = '<span class="text-gray-400 text-xs">None</span>';
 
-                var imgSrc = shed.image || '';
+                var imgSrc = (shed.images && shed.images[0]) || shed.image || '';
                 var imgTag = imgSrc
-                    ? '<img src="/' + imgSrc + '" alt="" class="w-12 h-12 object-cover rounded-lg">'
+                    ? '<img src="' + imgSrc + '" alt="" class="w-12 h-12 object-cover rounded-lg">'
                     : '<div class="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center text-gray-400"><i class="fa-solid fa-image"></i></div>';
 
                 return '<tr class="border-b hover:bg-gray-50">' +

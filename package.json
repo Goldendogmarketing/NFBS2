@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@upstash/redis": "^1.36.2",
+    "@vercel/blob": "^2.3.0",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.0"
   }
