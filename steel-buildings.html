@@ -283,12 +283,10 @@
                                         <div class="text-xs uppercase tracking-wide text-green-700 font-semibold mb-1">Start Your Order Today</div>
                                         <div class="text-2xl font-extrabold text-primary" id="sidebar-deposit-amount">$0</div>
                                         <div class="text-xs text-gray-500 mb-3" id="sidebar-deposit-label">deposit to lock in your price</div>
-                                        <button type="button" id="deposit-btn" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-bold text-base shadow-lg transition transform hover:scale-[1.02]">
-                                            <i class="fa-solid fa-lock mr-2"></i>Pay Now &mdash; <span id="deposit-btn-amount">$0</span> Deposit
-                                        </button>
+                                        <div id="paypal-button-container"></div>
                                         <div class="flex items-center justify-center gap-2 mt-2">
                                             <i class="fa-solid fa-shield-halved text-gray-400 text-xs"></i>
-                                            <span class="text-xs text-gray-400">Secure checkout via Stripe</span>
+                                            <span class="text-xs text-gray-400">Secure checkout via PayPal</span>
                                         </div>
                                     </div>
                                     <ul class="text-xs text-gray-500 space-y-1 mt-3">
@@ -500,6 +498,7 @@
             }).then(function(r) { return r.json(); })
             .then(function() {
                 document.getElementById('sidebar-deposit').classList.remove('hidden');
+                loadPayPalButtons();
                 btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i>Quote Submitted!';
                 btn.classList.remove('bg-secondary', 'hover:bg-blue-700');
                 btn.classList.add('bg-green-600');
@@ -514,34 +513,63 @@
             });
         });
 
-        // ---- Stripe Deposit ----
-        document.getElementById('deposit-btn').addEventListener('click', function() {
-            var name = document.getElementById('cfg-name').value.trim();
-            var email = document.getElementById('cfg-email').value.trim();
-            var phone = document.getElementById('cfg-phone').value.trim();
-            var zip = document.getElementById('cfg-zip').value.trim();
-            var est = window._bldEst;
-            var config = TYPE_LABEL[val('type')] + ' ' + num('width') + "x" + num('length') + "x" + num('height') + ' ' + ROOF_LABEL[val('roof')] + ' ' + ENC_LABEL[val('enclosure')];
+        // ---- PayPal Deposit ----
+        function loadPayPalButtons() {
+            var container = document.getElementById('paypal-button-container');
+            if (!container || container.dataset.loaded) return;
+            container.dataset.loaded = '1';
 
-            var btn = this;
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Redirecting to checkout...';
+            // Load PayPal JS SDK dynamically
+            var clientId = window._paypalClientId || 'sb'; // 'sb' = sandbox fallback
+            var script = document.createElement('script');
+            script.src = 'https://www.paypal.com/sdk/js?client-id=' + clientId + '&currency=USD';
+            script.onload = function() {
+                paypal.Buttons({
+                    style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay', height: 45 },
+                    createOrder: function() {
+                        var name = document.getElementById('cfg-name').value.trim();
+                        var email = document.getElementById('cfg-email').value.trim();
+                        var phone = document.getElementById('cfg-phone').value.trim();
+                        var zip = document.getElementById('cfg-zip').value.trim();
+                        var est = window._bldEst;
+                        var config = TYPE_LABEL[val('type')] + ' ' + num('width') + 'x' + num('length') + 'x' + num('height') + ' ' + ROOF_LABEL[val('roof')] + ' ' + ENC_LABEL[val('enclosure')];
 
-            fetch('/api/create-checkout', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ amount: est.deposit, total: est.total, config: config, name: name, email: email, phone: phone, zip: zip })
-            }).then(function(r) { return r.json(); })
-            .then(function(data) {
-                if (data.url) { window.location.href = data.url; }
-                else { throw new Error(data.error || 'Checkout failed'); }
-            })
-            .catch(function() {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fa-solid fa-lock mr-2"></i>Pay Now \u2014 ' + fmt(est.deposit) + ' Deposit';
-                alert('Could not start checkout. Please try again or call us at (904) 495-2325.');
-            });
-        });
+                        return fetch('/api/create-paypal-order', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ amount: est.deposit, total: est.total, config: config, name: name, email: email, phone: phone, zip: zip })
+                        }).then(function(r) { return r.json(); })
+                        .then(function(data) {
+                            if (data.id) return data.id;
+                            throw new Error(data.error || 'Could not create order');
+                        });
+                    },
+                    onApprove: function(data) {
+                        return fetch('/api/capture-paypal-order', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ orderId: data.orderID })
+                        }).then(function(r) { return r.json(); })
+                        .then(function(result) {
+                            if (result.success) {
+                                window.location.href = '/deposit-success.html';
+                            } else {
+                                alert('Payment could not be completed. Please try again or call (904) 495-2325.');
+                            }
+                        });
+                    },
+                    onError: function() {
+                        alert('Something went wrong with PayPal. Please try again or call (904) 495-2325.');
+                    }
+                }).render('#paypal-button-container');
+            };
+            document.head.appendChild(script);
+        }
+
+        // Load PayPal client ID from env, then render buttons when deposit section is shown
+        fetch('/api/paypal-client-id').then(function(r) { return r.json(); }).then(function(d) {
+            if (d.clientId) window._paypalClientId = d.clientId;
+        }).catch(function() {});
     })();
     </script>
 </body>
