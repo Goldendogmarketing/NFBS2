@@ -1,112 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://nflbuildingsolutions.com/</loc>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://nflbuildingsolutions.com/locations.html</loc>
-    <priority>0.9</priority>
-  </url>
-  <!-- Counties -->
-  <url><loc>https://nflbuildingsolutions.com/locations/bradford-county.html</loc><priority>0.8</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/clay-county.html</loc><priority>0.8</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county.html</loc><priority>0.8</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/marion-county.html</loc><priority>0.8</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/lake-county.html</loc><priority>0.8</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county.html</loc><priority>0.8</priority></url>
-  <!-- Bradford County Towns -->
-  <url><loc>https://nflbuildingsolutions.com/locations/bradford-county/starke.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/bradford-county/lawtey.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/bradford-county/hampton.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/bradford-county/brooker.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/bradford-county/graham.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/bradford-county/theressa.html</loc><priority>0.7</priority></url>
-  <!-- Clay County Towns -->
-  <url><loc>https://nflbuildingsolutions.com/locations/clay-county/green-cove-springs.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/clay-county/orange-park.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/clay-county/middleburg.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/clay-county/fleming-island.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/clay-county/keystone-heights.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/clay-county/oakleaf.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/clay-county/lakeside.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/clay-county/penney-farms.html</loc><priority>0.7</priority></url>
-  <!-- Alachua County Towns -->
-  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/gainesville.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/alachua.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/high-springs.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/newberry.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/hawthorne.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/waldo.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/archer.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/micanopy.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/la-crosse.html</loc><priority>0.7</priority></url>
-  <!-- Marion County Towns -->
-  <url><loc>https://nflbuildingsolutions.com/locations/marion-county/ocala.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/marion-county/belleview.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/marion-county/dunnellon.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/marion-county/silver-springs.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/marion-county/anthony.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/marion-county/citra.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/marion-county/reddick.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/marion-county/mcintosh.html</loc><priority>0.7</priority></url>
-  <!-- Lake County Towns -->
-  <url><loc>https://nflbuildingsolutions.com/locations/lake-county/tavares.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/lake-county/clermont.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/lake-county/leesburg.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/lake-county/eustis.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/lake-county/mount-dora.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/lake-county/groveland.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/lake-county/lady-lake.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/lake-county/umatilla.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/lake-county/minneola.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/lake-county/fruitland-park.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/lake-county/mascotte.html</loc><priority>0.7</priority></url>
-  <!-- Putnam County Towns -->
-  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/palatka.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/crescent-city.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/interlachen.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/pomona-park.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/welaka.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/melrose.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/satsuma.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/san-mateo.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/east-palatka.html</loc><priority>0.7</priority></url>
+  <!-- Main Pages -->
+  <url><loc>https://nflbuildingsolutions.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/about.html</loc><priority>0.8</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/steel-buildings.html</loc><priority>0.9</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/sheds.html</loc><priority>0.8</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/sheds-for-sale.html</loc><priority>0.8</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations.html</loc><priority>0.9</priority></url>
   <!-- Services -->
   <url><loc>https://nflbuildingsolutions.com/services/metal-carports.html</loc><priority>0.8</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/metal-garages.html</loc><priority>0.8</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/metal-barns.html</loc><priority>0.8</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/rv-covers.html</loc><priority>0.8</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/services/commercial-buildings.html</loc><priority>0.8</priority></url>
-  <!-- Service + County combinations -->
+  <!-- Counties -->
+  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county.html</loc><priority>0.8</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/bradford-county.html</loc><priority>0.8</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/clay-county.html</loc><priority>0.8</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/flagler-county.html</loc><priority>0.8</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/lake-county.html</loc><priority>0.8</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/marion-county.html</loc><priority>0.8</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county.html</loc><priority>0.8</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/st-johns-county.html</loc><priority>0.8</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/volusia-county.html</loc><priority>0.8</priority></url>
+  <!-- Alachua County Towns -->
+  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/campville.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/citra.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/earleton.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/gainesville.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/hawthorne.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/island-grove.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/lochloosa.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/mcintosh.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/melrose.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/micanopy.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/orange-heights.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/orange-lake.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/waldo.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/alachua-county/windsor.html</loc><priority>0.7</priority></url>
+  <!-- Bradford County Towns -->
+  <url><loc>https://nflbuildingsolutions.com/locations/bradford-county/graham.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/bradford-county/hampton.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/bradford-county/lawtey.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/bradford-county/melrose.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/bradford-county/starke.html</loc><priority>0.7</priority></url>
+  <!-- Clay County Towns -->
+  <url><loc>https://nflbuildingsolutions.com/locations/clay-county/green-cove-springs.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/clay-county/keystone-heights.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/clay-county/kingsley-lake.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/clay-county/lake-geneva.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/clay-county/lakeside.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/clay-county/melrose.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/clay-county/middleburg.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/clay-county/penney-farms.html</loc><priority>0.7</priority></url>
+  <!-- Flagler County Towns -->
+  <url><loc>https://nflbuildingsolutions.com/locations/flagler-county/bunnell.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/flagler-county/palm-coast.html</loc><priority>0.7</priority></url>
+  <!-- Lake County Towns -->
+  <url><loc>https://nflbuildingsolutions.com/locations/lake-county/astor.html</loc><priority>0.7</priority></url>
+  <!-- Marion County Towns -->
+  <url><loc>https://nflbuildingsolutions.com/locations/marion-county/anthony.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/marion-county/citra.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/marion-county/fort-mccoy.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/marion-county/lowell.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/marion-county/orange-springs.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/marion-county/reddick.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/marion-county/sparr.html</loc><priority>0.7</priority></url>
+  <!-- Putnam County Towns -->
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/bardin.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/bostwick.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/east-palatka.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/edgar.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/florahome.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/georges-lake.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/grandin.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/hollister.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/interlachen.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/lake-como.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/melrose.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/orange-springs.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/palatka.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/pomona-park.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/putnam-hall.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/rodman.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/san-mateo.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/satsuma.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/putnam-county/welaka.html</loc><priority>0.7</priority></url>
+  <!-- St. Johns County Towns -->
+  <url><loc>https://nflbuildingsolutions.com/locations/st-johns-county/armstrong.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/st-johns-county/elkton.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/st-johns-county/flagler-estates.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/st-johns-county/hastings.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/st-johns-county/spuds.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/st-johns-county/st-johns-river-estates.html</loc><priority>0.7</priority></url>
+  <!-- Volusia County Towns -->
+  <url><loc>https://nflbuildingsolutions.com/locations/volusia-county/pierson.html</loc><priority>0.7</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/locations/volusia-county/seville.html</loc><priority>0.7</priority></url>
+  <!-- Service + County Pages -->
+  <url><loc>https://nflbuildingsolutions.com/services/metal-carports/alachua-county.html</loc><priority>0.6</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/metal-carports/bradford-county.html</loc><priority>0.6</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/metal-carports/clay-county.html</loc><priority>0.6</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/services/metal-carports/alachua-county.html</loc><priority>0.6</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/services/metal-carports/marion-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/metal-carports/flagler-county.html</loc><priority>0.6</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/metal-carports/lake-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/metal-carports/marion-county.html</loc><priority>0.6</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/metal-carports/putnam-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/metal-carports/st-johns-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/metal-carports/volusia-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/metal-garages/alachua-county.html</loc><priority>0.6</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/metal-garages/bradford-county.html</loc><priority>0.6</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/metal-garages/clay-county.html</loc><priority>0.6</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/services/metal-garages/alachua-county.html</loc><priority>0.6</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/services/metal-garages/marion-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/metal-garages/flagler-county.html</loc><priority>0.6</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/metal-garages/lake-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/metal-garages/marion-county.html</loc><priority>0.6</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/metal-garages/putnam-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/metal-garages/st-johns-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/metal-garages/volusia-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/metal-barns/alachua-county.html</loc><priority>0.6</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/metal-barns/bradford-county.html</loc><priority>0.6</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/metal-barns/clay-county.html</loc><priority>0.6</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/services/metal-barns/alachua-county.html</loc><priority>0.6</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/services/metal-barns/marion-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/metal-barns/flagler-county.html</loc><priority>0.6</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/metal-barns/lake-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/metal-barns/marion-county.html</loc><priority>0.6</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/metal-barns/putnam-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/metal-barns/st-johns-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/metal-barns/volusia-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/rv-covers/alachua-county.html</loc><priority>0.6</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/rv-covers/bradford-county.html</loc><priority>0.6</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/rv-covers/clay-county.html</loc><priority>0.6</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/services/rv-covers/alachua-county.html</loc><priority>0.6</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/services/rv-covers/marion-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/rv-covers/flagler-county.html</loc><priority>0.6</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/rv-covers/lake-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/rv-covers/marion-county.html</loc><priority>0.6</priority></url>
   <url><loc>https://nflbuildingsolutions.com/services/rv-covers/putnam-county.html</loc><priority>0.6</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/services/commercial-buildings/bradford-county.html</loc><priority>0.6</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/services/commercial-buildings/clay-county.html</loc><priority>0.6</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/services/commercial-buildings/alachua-county.html</loc><priority>0.6</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/services/commercial-buildings/marion-county.html</loc><priority>0.6</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/services/commercial-buildings/lake-county.html</loc><priority>0.6</priority></url>
-  <url><loc>https://nflbuildingsolutions.com/services/commercial-buildings/putnam-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/rv-covers/st-johns-county.html</loc><priority>0.6</priority></url>
+  <url><loc>https://nflbuildingsolutions.com/services/rv-covers/volusia-county.html</loc><priority>0.6</priority></url>
 </urlset>

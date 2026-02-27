@@ -13,12 +13,14 @@ function ensureDir(dir) {
 }
 
 // Generate HTML head
-function generateHead(title, description, canonical) {
+function generateHead(title, description, canonical, prefix) {
+  prefix = prefix || '';
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="${prefix}favicon.png">
     <title>${title}</title>
     <meta name="description" content="${description}">
     <link rel="canonical" href="${canonical}">
