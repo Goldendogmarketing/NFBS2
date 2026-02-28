@@ -77,8 +77,13 @@ module.exports = async function handler(req, res) {
         submissionData.middle_name = body.middle_name || '';
         submissionData.last_name = body.last_name || '';
         submissionData.dob = body.dob || '';
-        submissionData.ssn_encrypted = body.ssn ? encrypt(body.ssn) : '';
-        submissionData.dl_encrypted = body.drivers_license ? encrypt(body.drivers_license) : '';
+        try {
+          submissionData.ssn_encrypted = body.ssn ? encrypt(body.ssn) : '';
+          submissionData.dl_encrypted = body.drivers_license ? encrypt(body.drivers_license) : '';
+        } catch (encErr) {
+          console.error('Encryption error:', encErr.message);
+          return res.status(500).json({ error: 'Failed to secure your data. Please try again or call (904) 495-2325.' });
+        }
       }
 
       // Save to Redis
