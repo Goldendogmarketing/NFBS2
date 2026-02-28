@@ -81,8 +81,8 @@ module.exports = async function handler(req, res) {
           submissionData.ssn_encrypted = body.ssn ? encrypt(body.ssn) : '';
           submissionData.dl_encrypted = body.drivers_license ? encrypt(body.drivers_license) : '';
         } catch (encErr) {
-          console.error('Encryption error:', encErr.message, 'KEY_LENGTH:', (process.env.ENCRYPTION_KEY || '').length);
-          return res.status(500).json({ error: 'Encryption error: ' + encErr.message });
+          console.error('Encryption error:', encErr.message);
+          return res.status(500).json({ error: 'Failed to secure your data. Please try again or call (904) 495-2325.' });
         }
       }
 
