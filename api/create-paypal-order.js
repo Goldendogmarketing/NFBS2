@@ -40,16 +40,18 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({ error: 'Missing required fields.' });
     }
 
-    // Save submission to Redis so the lead isn't lost
-    await createSubmission({
-      type: 'deposit',
-      name: name,
-      email: email,
-      phone: phone || '',
-      zip: zip || '',
-      building_type: config || '',
-      notes: 'Deposit: $' + amount + ' | Est Total: $' + total + ' | Config: ' + config
-    });
+    // Save submission to Redis so the lead isn't lost (skip if already saved)
+    if (!body.skipLead) {
+      await createSubmission({
+        type: body.type || 'deposit',
+        name: name,
+        email: email,
+        phone: phone || '',
+        zip: zip || '',
+        building_type: config || '',
+        notes: 'Deposit: $' + amount + ' | Est Total: $' + total + ' | Config: ' + config
+      });
+    }
 
     var base = process.env.PAYPAL_API_BASE || 'https://api-m.sandbox.paypal.com';
     var token = await getPayPalAccessToken();
@@ -63,7 +65,7 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify({
         intent: 'CAPTURE',
         purchase_units: [{
-          description: 'Steel Building Deposit - ' + config,
+          description: body.description || ('Steel Building Deposit - ' + config),
           custom_id: name + ' | ' + email + ' | ' + phone,
           amount: {
             currency_code: 'USD',
