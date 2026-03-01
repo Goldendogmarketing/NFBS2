@@ -179,15 +179,37 @@ function generateCountyPage(county) {
                     </div>
                 </a>`).join('\n');
 
+  const shedCards = `
+                <a href="../sheds-for-sale.html" class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition group">
+                    <div class="p-6">
+                        <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-4 group-hover:bg-green-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-store text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Sheds For Sale</h3>
+                        <p class="text-gray-600 text-sm mb-4">Browse our available shed inventory. Buy direct and save with free delivery and setup included.</p>
+                        <span class="text-green-600 font-semibold">Browse Sheds <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                    </div>
+                </a>
+                <a href="../sheds.html" class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition group">
+                    <div class="p-6">
+                        <div class="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 mb-4 group-hover:bg-purple-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-key text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Sheds - Rent To Own</h3>
+                        <p class="text-gray-600 text-sm mb-4">No credit check required. Low monthly payments with free delivery and setup included.</p>
+                        <span class="text-purple-600 font-semibold">Browse Rent-To-Own <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                    </div>
+                </a>`;
+
   const serviceCards = services.map(service => `
-                <a href="../services/${service.slug}/${county.slug}.html" class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition group">
+                <a href="../steel-buildings.html" class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition group">
                     <div class="p-6">
                         <div class="w-14 h-14 bg-secondary/10 rounded-full flex items-center justify-center text-secondary mb-4 group-hover:bg-secondary group-hover:text-white transition">
                             <i class="fa-solid ${service.icon} text-2xl"></i>
                         </div>
                         <h3 class="font-bold text-xl mb-2">${service.name}</h3>
                         <p class="text-gray-600 text-sm mb-4">${service.description}</p>
-                        <span class="text-secondary font-semibold">View in ${county.name} <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        <span class="text-secondary font-semibold">Get a Quote <i class="fa-solid fa-arrow-right ml-1"></i></span>
                     </div>
                 </a>`).join('\n');
 
@@ -233,9 +255,10 @@ ${townLinks}
     <!-- Services Section -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-4">Our Services in ${county.name}</h2>
-            <p class="text-gray-600 text-center mb-12">Quality metal buildings delivered and installed throughout ${county.name}</p>
+            <h2 class="text-3xl font-bold text-center mb-4">Buildings & Sheds in ${county.name}</h2>
+            <p class="text-gray-600 text-center mb-12">Quality buildings and sheds delivered and installed throughout ${county.name}</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+${shedCards}
 ${serviceCards}
             </div>
         </div>
@@ -251,6 +274,45 @@ function generateTownPage(county, town) {
   const description = `Custom metal carports, garages, barns in ${town.name}, ${county.name} FL. Free delivery & installation. 20-year warranty. Call ${business.phone} for a free quote.`;
 
   const townPrefix = '../../';
+
+  const townShedCards = `
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <div class="p-6">
+                        <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-4">
+                            <i class="fa-solid fa-store text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Sheds For Sale in ${town.name}</h3>
+                        <p class="text-gray-600 text-sm mb-4">Browse our available shed inventory. Buy direct and save with free delivery and setup included.</p>
+                        <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Buy Direct & Save</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Free Delivery to ${town.name}</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Free Setup Included</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i>Multiple Styles & Sizes</li>
+                        </ul>
+                        <a href="${townPrefix}sheds-for-sale.html" class="block w-full bg-green-600 hover:bg-green-700 text-white text-center py-3 rounded-lg font-semibold transition">
+                            Browse Sheds
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <div class="p-6">
+                        <div class="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 mb-4">
+                            <i class="fa-solid fa-key text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Sheds - Rent To Own in ${town.name}</h3>
+                        <p class="text-gray-600 text-sm mb-4">No credit check required. Low monthly payments with free delivery and setup included.</p>
+                        <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                            <li><i class="fa-solid fa-check text-purple-500 mr-2"></i>No Credit Check</li>
+                            <li><i class="fa-solid fa-check text-purple-500 mr-2"></i>Low Monthly Payments</li>
+                            <li><i class="fa-solid fa-check text-purple-500 mr-2"></i>Free Delivery to ${town.name}</li>
+                            <li><i class="fa-solid fa-check text-purple-500 mr-2"></i>Free Setup Included</li>
+                        </ul>
+                        <a href="${townPrefix}sheds.html" class="block w-full bg-purple-600 hover:bg-purple-700 text-white text-center py-3 rounded-lg font-semibold transition">
+                            Browse Rent-To-Own
+                        </a>
+                    </div>
+                </div>`;
+
   const serviceCards = services.map(service => `
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
                     <div class="p-6">
@@ -262,8 +324,8 @@ function generateTownPage(county, town) {
                         <ul class="text-sm text-gray-500 space-y-2 mb-6">
                             ${service.features.map(f => `<li><i class="fa-solid fa-check text-accent mr-2"></i>${f}</li>`).join('\n                            ')}
                         </ul>
-                        <a href="${townPrefix}sheds-for-sale.html" class="block w-full bg-secondary hover:bg-blue-700 text-white text-center py-3 rounded-lg font-semibold transition">
-                            Design Your ${service.shortName}
+                        <a href="${townPrefix}steel-buildings.html" class="block w-full bg-secondary hover:bg-blue-700 text-white text-center py-3 rounded-lg font-semibold transition">
+                            Get a Quote
                         </a>
                     </div>
                 </div>`).join('\n');
@@ -312,9 +374,10 @@ ${generateNav(2)}
     <!-- Services -->
     <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-4">Metal Buildings Available in ${town.name}</h2>
-            <p class="text-gray-600 text-center mb-12">Choose from our selection of quality steel structures</p>
+            <h2 class="text-3xl font-bold text-center mb-4">Buildings & Sheds Available in ${town.name}</h2>
+            <p class="text-gray-600 text-center mb-12">Choose from our selection of quality buildings and sheds</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+${townShedCards}
 ${serviceCards}
             </div>
         </div>
