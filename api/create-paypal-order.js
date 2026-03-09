@@ -23,7 +23,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (!process.env.PAYPAL_CLIENT_ID || !process.env.PAYPAL_CLIENT_SECRET) {
-    return res.status(500).json({ error: 'Payment processing is not configured yet. Please call (904) 495-2325 to place your order.' });
+    return res.status(500).json({ error: 'Payment processing is not configured yet. Please call (386) 350-1047 to place your order.' });
   }
 
   try {

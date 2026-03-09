@@ -52,7 +52,7 @@ function generateNav(depth = 0) {
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2">
             <div class="flex items-center gap-6">
                 <span><i class="fa-solid fa-flag-usa text-secondary mr-2"></i>100% American Owned</span>
-                <span class="hidden md:inline"><i class="fa-solid fa-award text-secondary mr-2"></i>20+ Years Experience</span>
+                <span class="hidden md:inline"><i class="fa-solid fa-award text-secondary mr-2"></i>10+ Years Experience</span>
             </div>
             <a href="tel:${business.phoneLink}" class="flex items-center gap-2 font-bold text-secondary hover:text-blue-300 transition">
                 <i class="fa-solid fa-phone"></i> ${business.phone}
@@ -102,7 +102,7 @@ function generateFooter(depth = 0) {
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
                     <img src="${prefix}logo.png" alt="${business.name}" class="h-12 w-auto mb-4 brightness-0 invert">
-                    <p class="text-sm">Quality metal buildings at affordable prices. Serving North Florida for over 20 years.</p>
+                    <p class="text-sm">Quality metal buildings at affordable prices. Serving North Florida for over 10 years.</p>
                 </div>
                 <div>
                     <h4 class="font-bold text-white mb-4">Products</h4>
@@ -213,7 +213,7 @@ ${generateNav(1)}
             <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 text-center">
                 <div><div class="text-2xl font-bold text-primary">FREE</div><div class="text-sm text-gray-500">Delivery</div></div>
                 <div><div class="text-2xl font-bold text-primary">FREE</div><div class="text-sm text-gray-500">Installation</div></div>
-                <div><div class="text-2xl font-bold text-primary">20-Year</div><div class="text-sm text-gray-500">Warranty</div></div>
+                <div><div class="text-2xl font-bold text-primary">10-Year</div><div class="text-sm text-gray-500">Warranty</div></div>
                 <div><div class="text-2xl font-bold text-secondary">10%</div><div class="text-sm text-gray-500">Down Payment</div></div>
             </div>
         </div>
@@ -248,7 +248,7 @@ ${generateFooter(1)}`;
 // Generate Town Page
 function generateTownPage(county, town) {
   const title = `Metal Buildings in ${town.name}, FL | Carports, Garages & Barns | ${business.name}`;
-  const description = `Custom metal carports, garages, barns in ${town.name}, ${county.name} FL. Free delivery & installation. 20-year warranty. Call ${business.phone} for a free quote.`;
+  const description = `Custom metal carports, garages, barns in ${town.name}, ${county.name} FL. Free delivery & installation. 10-year warranty. Call ${business.phone} for a free quote.`;
 
   const townPrefix = '../../';
   const serviceCards = services.map(service => `
@@ -303,7 +303,7 @@ ${generateNav(2)}
             <div class="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-center text-sm">
                 <span><i class="fa-solid fa-truck text-secondary mr-2"></i>Free Delivery to ${town.name}</span>
                 <span><i class="fa-solid fa-tools text-secondary mr-2"></i>Free Installation</span>
-                <span><i class="fa-solid fa-shield-halved text-secondary mr-2"></i>20-Year Warranty</span>
+                <span><i class="fa-solid fa-shield-halved text-secondary mr-2"></i>10-Year Warranty</span>
                 <span><i class="fa-solid fa-dollar-sign text-secondary mr-2"></i>Financing Available</span>
             </div>
         </div>
@@ -342,7 +342,7 @@ ${serviceCards}
                 </div>
                 <div>
                     <div class="w-16 h-16 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h3 class="font-bold mb-2">20-Year Warranty</h3>
+                    <h3 class="font-bold mb-2">10-Year Warranty</h3>
                     <p class="text-gray-600 text-sm">Industry-leading warranty on all structures.</p>
                 </div>
             </div>
@@ -513,7 +513,7 @@ ${generateNav(0)}
     <section class="bg-primary text-white py-16">
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Service Areas</h1>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto">Quality metal buildings delivered and installed throughout North Florida. Free delivery. Free installation. 20-year warranty.</p>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">Quality metal buildings delivered and installed throughout North Florida. Free delivery. Free installation. 10-year warranty.</p>
         </div>
     </section>
 

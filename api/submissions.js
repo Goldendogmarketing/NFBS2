@@ -82,7 +82,7 @@ module.exports = async function handler(req, res) {
           submissionData.dl_encrypted = body.drivers_license ? encrypt(body.drivers_license) : '';
         } catch (encErr) {
           console.error('Encryption error:', encErr.message);
-          return res.status(500).json({ error: 'Failed to secure your data. Please try again or call (904) 495-2325.' });
+          return res.status(500).json({ error: 'Failed to secure your data. Please try again or call (386) 350-1047.' });
         }
       }
 
@@ -132,7 +132,7 @@ module.exports = async function handler(req, res) {
       }
 
       try {
-        await fetch('https://formsubmit.co/ajax/josh@northfloridabuildingsolutions.com', {
+        await fetch('https://formsubmit.co/ajax/northfloridabuildingsolutions@outlook.com', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(emailPayload)
