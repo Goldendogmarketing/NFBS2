@@ -215,12 +215,13 @@
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Concrete Foundation</label>
-                                <select id="cfg-concrete" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none">
-                                    <option value="none" selected>None</option>
-                                    <option value="4in">4" Slab</option>
-                                    <option value="6in">6" Slab</option>
-                                </select>
+                                <label class="flex items-center gap-3 cursor-pointer">
+                                    <input type="checkbox" id="cfg-concrete" class="w-5 h-5 rounded border-gray-300 text-secondary focus:ring-secondary">
+                                    <div>
+                                        <span class="font-semibold text-gray-700">4" Concrete Slab with Footer</span>
+                                        <span class="text-sm text-gray-500 block">Poured foundation for maximum stability</span>
+                                    </div>
+                                </label>
                             </div>
                             <div class="md:col-span-2">
                                 <label class="flex items-center gap-3 cursor-pointer">
@@ -412,8 +413,8 @@
         var GDOOR_COST = { '6x7': 600, '8x8': 800, '9x8': 900, '10x10': 1100, '12x12': 1500, '14x14': 2000 };
         var WALKIN_COST = 350;
         var WINDOW_COST = 250;
-        var CONCRETE_RATE = { 'none': 0, '4in': 6, '6in': 8 };
-        var CONCRETE_LABEL = { 'none': 'None', '4in': '4" Slab', '6in': '6" Slab' };
+        var CONCRETE_RATE = 8.50;
+        var CONCRETE_LABEL = { false: 'None', true: '4" Slab w/ Footer' };
         var CERT_COST = 1200;
         var HEIGHT_BASE = 10;
         var HEIGHT_EXTRA_PER_FT = 0.50;
@@ -475,7 +476,7 @@
             addons += gdoorQty * GDOOR_COST[gdoorSize];
             addons += num('walkin') * WALKIN_COST;
             addons += num('windows') * WINDOW_COST;
-            addons += CONCRETE_RATE[val('concrete')] * sqft;
+            addons += els['concrete'].checked ? CONCRETE_RATE * sqft : 0;
             if (els['cert'].checked) addons += CERT_COST;
 
             var total = Math.round(base + addons);
@@ -502,7 +503,7 @@
             if (wk > 0) doorParts.push(wk + ' walk-in');
             document.getElementById('sum-doors').textContent = doorParts.length ? doorParts.join(', ') : 'None';
             document.getElementById('sum-windows').textContent = num('windows') || '0';
-            document.getElementById('sum-concrete').textContent = CONCRETE_LABEL[val('concrete')];
+            document.getElementById('sum-concrete').textContent = CONCRETE_LABEL[els['concrete'].checked];
             document.getElementById('sum-cert').textContent = els['cert'].checked ? 'Yes' : 'No';
 
             document.getElementById('sidebar-deposit-amount').textContent = fmt(deposit);
@@ -531,7 +532,7 @@
                 ' | Roof: ' + ROOF_LABEL[val('roof')] + ' | ' + ENC_LABEL[val('enclosure')] +
                 ' | Garage Doors: ' + (num('gdoor-qty') > 0 ? num('gdoor-qty') + 'x ' + val('gdoor-size') : 'None') +
                 ' | Walk-in: ' + num('walkin') + ' | Windows: ' + num('windows') +
-                ' | Concrete: ' + CONCRETE_LABEL[val('concrete')] + ' | Certified: ' + (els['cert'].checked ? 'Yes' : 'No') +
+                ' | Concrete: ' + CONCRETE_LABEL[els['concrete'].checked] + ' | Certified: ' + (els['cert'].checked ? 'Yes' : 'No') +
                 ' | Est: ' + fmt(est.low) + '-' + fmt(est.high);
 
             var btn = this;
