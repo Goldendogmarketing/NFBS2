@@ -431,6 +431,35 @@
         function num(id) { return parseInt(els[id].value) || 0; }
         function fmt(n) { return '$' + n.toLocaleString('en-US'); }
 
+        // ---- Enforce minimum leg height based on garage door size ----
+        function getDoorHeight(sizeStr) {
+            var parts = sizeStr.split('x');
+            return parseInt(parts[1]) || 0;
+        }
+
+        function enforceMinHeight() {
+            var gdoorQty = num('gdoor-qty');
+            var doorH = gdoorQty > 0 ? getDoorHeight(val('gdoor-size')) : 0;
+            var minHeight = doorH > 0 ? doorH + 2 : 0;
+            var heightEl = els['height'];
+            var opts = heightEl.options;
+            for (var i = 0; i < opts.length; i++) {
+                opts[i].disabled = parseInt(opts[i].value) < minHeight;
+            }
+            if (parseInt(heightEl.value) < minHeight) {
+                for (var j = 0; j < opts.length; j++) {
+                    if (parseInt(opts[j].value) >= minHeight) {
+                        heightEl.value = opts[j].value;
+                        break;
+                    }
+                }
+            }
+        }
+
+        els['gdoor-size'].addEventListener('change', function() { enforceMinHeight(); calculate(); });
+        els['gdoor-qty'].addEventListener('change', function() { enforceMinHeight(); calculate(); });
+        enforceMinHeight();
+
         function calculate() {
             var type = val('type');
             var w = num('width'), l = num('length'), h = num('height');
